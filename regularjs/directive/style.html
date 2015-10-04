@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular r-style</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+    
+    <script>
+    var app = new Regular({
+        template: '<button class="btn" on-click={left=left+10} style="left:{left}px" r-style={ {position:"relative", left:left+"px"} }></button><br>left={left}',
+        data: {
+            left: 1
+        }
+    }).$inject(document.body);
+    </script>
+</body>
+</html>

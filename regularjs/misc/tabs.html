@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular - tabs</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+    <style>
+        body { margin: 25px; }
+        .nav-tabs { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+
+    <script type="text/regular" id="tabs">
+        <div>
+            <ul class="nav nav-tabs">
+                {#list tabs as tab}
+                <li r-class={{active:tab.data.selected}} on-click={this.selectTab(tab)}>
+                    <a href="javascript:;">{#include tab.data.title}</a>
+                </li>
+                {/list}
+            </ul>
+            <r-content>
+        </div>
+    </script>
+
+    <script type="text/regular" id="app">
+        <div class="well">
+            Username: <b>{user.username}</b><br>
+            Unread messages count: <b>{user.unread_messages_count}</b>
+            <button on-click={todos.push(todos.length+1)}>Add a Tab</button>
+        </div>
+        <tabs ref="tabs">
+            <tabpane title="<b>Inbox</b><span class='badge'>{user.unread_messages_count}</span>" on-active={user.unread_messages_count+=2}>
+                Your username is: <b>{user.username}</b>
+                <input type="text" r-model={user.username}>
+            </tabpane>
+            {#list todos as item}
+                <tabpane title="Tab {item_index+1}">
+                    Content of the first tab + {item} + {user.username}
+                </tabpane>
+            {/list}
+        </tabs>
+        <hr>
+        <div>
+            <button on-click={this.$refs.tabs.selectTab(0)}>Select first tab</button>
+            <button on-click={this.$refs.tabs.selectTab(1)}>Select second tab</button>
+            <button on-click={this.$refs.tabs.selectTab(2)}>Select third tab</button>
+        </div>
+        <input type="text" r-model="month" ref="datepicker" placeholder="Search month..." readonly="readonly"><i class="search icon" on-click={this.search(month)}>dada</i>
+    </script>
+    
+    <script>
+        var Tabs = Regular.extend({
+            name: 'tabs',
+            template: '#tabs',
+            config: function(data) {
+                data.tabs = data.tabs || [];
+            },
+            selectTab: function(tabOrIndex) {
+                var tab = isNaN(tabOrIndex) ? tabOrIndex : this.data.tabs[tabOrIndex];
+                var data = this.data;
+                tab.$emit('active');
+                data.tabs.forEach(function(t) {
+                    t.data.selected = (t === tab);
+                });
+                // preventDefault
+                return false;
+            }
+        });
+        Regular.extend({
+            name: 'tabpane',
+            data: {selected: false},
+            template: '<div r-hide={!selected}><r-content></div>',
+            config: function() {
+                if (this.$outer) {
+                    var tabs = this.$outer.data.tabs;
+                    if (tabs.length === 0) this.data.selected = true;
+                    tabs.push(this);
+                }
+            }
+        });
+        var App = Regular.extend({
+            template: '#app',
+            data: {
+                user: {
+                    username: 'John',
+                    unread_messages_count: 5
+                },
+                todos: [1,2,3,4]
+            },
+            search: function(month) {
+                alert(month)
+            }
+        });
+        new App().$inject(document.body);
+
+        // Tabs use in initialize way
+        var body = '\
+        <tabpane title="<b>tab</b>1" on-active={user.unread_messages_count+=2}>Tab init by $body {user.username}</tabpane>\
+        <tabpane title="<b>tab</b>2" on-active={user.unread_messages_count+=2}>Your username is: <b>{user.username}</b><input r-model={user.username}></tabpane>\
+        ';
+        new Tabs({
+            $body: body,
+            data: {
+                user: {
+                    username: 'regular',
+                    unread_messages_count: 100
+                }
+            }
+        }).$inject(document.body);
+    </script>
+</body>
+</html>

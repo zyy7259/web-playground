@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular - counter</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+</head>
+<body>
+    <div id="app"></div>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+
+    <script type="text/regular" id="rgl">
+        <h2>{count}</h2>
+        <a href="javascript:void(0)" on-click={this.start()}>start</a>
+        <a href="javascript:void(0)" on-click={this.stop()}>stop</a>
+    </script>
+    <script>
+    function TimeoutModule(Component) {
+        Component.implement({
+            $timeout: function(fn, delay) {
+                delay = delay || 0;
+                return setTimeout(function() {
+                    fn.call(this);
+                    this.$update(); // enter digest
+                }.bind(this), delay);
+            },
+            $interval: function(fn, interval) {
+                interval = interval || 1000/60;
+                return setInterval(function() {
+                    fn.call(this);
+                    this.$update(); // enter digest
+                }.bind(this), interval);
+            }
+        });
+    }
+    Regular.use(TimeoutModule);
+    var Counter = Regular.extend({
+        template: '#rgl',
+        start: function() {
+            if (this.tid) return;
+            this.tid = this.$interval(function() {
+                this.data.count++;
+            }, 100);
+        },
+        stop: function() {
+            this.data.count = 0;
+            clearInterval(this.tid);
+            this.tid = null;
+        }
+    }).use('$timeout');
+    new Counter({
+        data: {
+            count: 0
+        }
+    }).$inject('#app');
+    </script>
+</body>
+</html>

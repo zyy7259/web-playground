@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular TodoMVC</title>
+    <link rel="stylesheet" href="/node_modules/todomvc-common/base.css">
+    <link rel="stylesheet" href="/node_modules/todomvc-app-css/index.css">
+</head>
+<body>
+    <div id="app"></div>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+
+    <script type="text/regular" id="todo">
+        <li r-class={ {'completed':todo.completed, 'editing':todo.editing} }>
+            <div class="view">
+                <input class="toggle" type="checkbox" r-model={todo.completed}>
+                <label on-dblclick={todo.editing=true}>{todo.description}</label>
+                <button on-click="remove" class="destroy"></button>
+            </div>
+            <input class="edit" on-enter={todo.editing=false} r-model={todo.description} autofocus>
+        </li>
+    </script>
+
+    <script type="text/regular" id="todomvc">
+        <section class="todoapp">
+            <header class="header">
+                <h1>todos</h1>
+                <input class="new-todo" placeholder="What needs to be done?" autofocus r-model={editTodo} on-enter={this.newTodo()}>
+            </header>
+            {#if !!todos.length}
+            <!-- This section should be hidden by default and shown when there are todos -->
+            <section class="main">
+                <input class="toggle-all" type="checkbox" r-model='allCompleted'>
+                <label for="toggle-all">Mark all as complete</label>
+                <ul class="todo-list">
+                    <!-- These are here just to show the structure of the list items -->
+                    <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
+                    {#list this.getList(filter) as todo}
+                        <todo todo={todo} on-remove={todos.splice(todo_index,1)}></todo>
+                    {/list}
+                </ul>
+            </section>
+            <!-- This footer should hidden by default and shown when there are todos -->
+            <footer class="footer">
+                <!-- This should be `0 items left` by default -->
+                <span class="todo-count"><strong>{activeLength}</strong> {activeLength === 1 ? 'item' : 'items'} left</span>
+                <!-- Remove this if you do not implement routing -->
+                <ul class="filters">
+                    <li>
+                        <a r-class={ {selected:filter==='all'} } href="javascript:;" on-click={filter='all'}>All</a>
+                    </li>
+                    <li>
+                        <a class={filter === 'active' ? 'selected' : ''} href="javascript:;" on-click={filter='active'}>Active</a>
+                    </li>
+                    <li>
+                        <a class="{filter === 'completed' ? 'selected' : ''}" href="javascript:;" on-click={filter='completed'}>Completed</a>
+                    </li>
+                </ul>
+                <!-- Hidden if no completed items are left ↓ -->
+                {#if completedLength}
+                <button class="clear-completed" on-click={this.clearCompleted()}>Clear completed ({completedLength})</button>
+                {/if}
+            </footer>
+            {/if}
+        </section>
+        <footer class="info">
+            <p>Double-click to edit a todo</p>
+            <!-- Remove the below line ↓ -->
+            <p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
+            <!-- Change this out with your name and url ↓ -->
+            <p>Created by <a href="http://todomvc.com">you</a></p>
+            <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+        </footer>
+    </script>
+
+    <script>
+    var Todo = Regular.extend({
+        data: { todo: {} },
+        name: 'todo',
+        template: '#todo'
+    });
+    var TodoMVC = Regular.extend({
+        template: '#todomvc',
+        newTodo: function() {
+            var data = this.data;
+            data.todos.unshift({description: data.editTodo});
+            data.editTodo = '';
+        },
+        getList: function(filter) {
+            if (!filter || filter === 'all') {
+                return this.data.todos;
+            } else {
+                return this.data.todos.filter(function(item) {
+                    return filter === 'completed' ? item.completed : !item.completed;
+                });
+            }
+        },
+        clearCompleted: function() {
+            this.data.todos = this.data.todos.filter(function(item) {
+                return !item.completed;
+            });
+        },
+        computed: {
+            activeLength: 'this.getList("active").length',
+            completedLength: 'this.getList("completed").length',
+            allCompleted: {
+                get: function(data) {
+                    return data.todos.length === this.getList('completed').length
+                },
+                set: function(sign, data) {
+                    data.todos.forEach(function(item) {
+                        item.completed = sign;
+                    });
+                }
+            }
+        }
+    });
+    var todos = [
+        {completed: true, description: 'Taste JavaScript'},
+        {completed: false, description: 'Buy a unicorn'}
+    ];
+    new TodoMVC({
+        data: {
+            todos: todos,
+            filter: 'all'
+        }
+    }).$inject('#app');
+    </script>
+</body>
+</html>

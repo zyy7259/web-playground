@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular - dom event</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+    
+    <script>
+    new Regular({
+        template: '<div><button on-click={count=count+1}>count+1</button> {count}</div>',
+        data: {
+            count: 1
+        }
+    }).$inject(document.body);
+    </script>
+</body>
+</html>

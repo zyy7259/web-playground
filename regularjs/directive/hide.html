@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular r-hide</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+    
+    <script>
+    var app = new Regular({
+        template: '<button on-click={hide=!hide}>{#if hide}show{#else}hide{/if}</button> <span r-hide={hide}>dada</span> <span r-hide="hide">dada</span>' + '<br>' +
+                    '<button on-click={show=!show}>{#if show}hide{#else}show{/if}</button> <span r-hide={!show}>dada</span> <span r-hide="!show">dada</span>',
+        data: {
+            hide: false,
+            show: true
+        }
+    }).$inject(document.body);
+    </script>
+</body>
+</html>

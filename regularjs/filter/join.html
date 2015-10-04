@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>filter join</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+    
+    <script>
+    Regular.filter('join', {
+        // ['1', '2', '3'] -> '1-2-3'
+        get: function(src, separator) {
+            return src.join(separator || '-');
+        },
+        // '1'-'2'-'3' -> ['1', '2', '3']
+        set: function(dest, separator) {
+            return dest.split(separator || '-');
+        }
+    });
+    new Regular({
+        template: "array: {array|json} <input r-model={array|join:'-'}>",
+        data: {
+            array: ['1', '2', '3']
+        }
+    }).$inject(document.body);
+    </script>
+</body>
+</html>

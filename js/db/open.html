@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>db open</title>
+    <!-- link -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- script -->
+    <script src="/node_modules/regularjs/dist/regular.min.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/db.js/src/db.js"></script>
+
+    <script type="text/template" id="tpl">
+    <div>
+        account: <input type="text" r-model={account}>
+        nick: <input type="text" r-model={nick}>
+        email: <input type="text" r-model={email}>
+        <button type="button" on-click={this.addUser()}>addUser</button>
+    </div>
+    {#if !!users.length}
+    <ul>
+        {#list users as user}
+        <li><button type="button" on-click={this.deleteUser(user.account)}> x </button> account: {user.account}, nick: {user.nick}, email: {user.email}</li>
+        {/list}
+    </ul>
+    {/if}
+    </script>
+
+    <script>
+    var page = {
+
+        init: function() {
+            page.initDB();
+        },
+
+        initDB: function() {
+
+            console.info('opendb');
+
+            var request = window.indexedDB.open('db', 1);
+            request.onerror = function(event) {
+                console.dir(event);
+                console.log(event.type);
+                console.dir(event.target);
+                console.dir(event.target.error);
+            };
+            request.onsuccess = function(event) {
+                console.dir(event);
+                console.log(event.type);
+                console.dir(event.target);
+                console.log(event.target.result);
+
+                page.db = event.target.result;
+                page.initData();
+            };
+            request.onupgradeneeded = function(event) {
+                console.dir(event);
+                console.log(event.type);
+                console.dir(event.target);
+                console.dir(event.target.result);
+
+                var db = event.target.result;
+                var os = db.createObjectStore('user', {keyPath: 'account'});
+                os.createIndex('nick', 'nick', {unique:false});
+                os.createIndex('email', 'email', {unique:true});
+            };
+
+        },
+
+        initData: function() {
+            page.getUsers(page.initDom);
+        },
+
+        getUsers: function(cb) {
+            console.info('getUsers');
+
+            var t = page.db.transaction('user'),
+                os = t.objectStore('user'),
+                users = [];
+            t.onerror = function(event) {
+                console.log(event);
+                console.log(event.type);
+                console.log(event.target);
+                console.log(event.target.error);
+            };
+            t.onabort = function(event) {
+                console.log(event);
+                console.log(event.type);
+                console.log(event.target);
+            };
+            t.oncomplete = function(event) {
+                console.log(event);
+                console.log(event.type);
+                cb(users);
+            };
+            os.openCursor().onsuccess = function(event) {
+                var cursor = event.target.result;
+                if (cursor) {
+                    users.push(cursor.value);
+                    cursor.continue();
+                }
+            };
+        },
+
+        initDom: function(users) {
+
+            page.app = new Regular({
+
+                template: '#tpl',
+
+                data: {
+                    users: users
+                },
+                
+                addUser: function() {
+
+                    if (!this.data.account) {
+                        alert('请输入账号');
+                        return;
+                    }
+
+                    console.info('addUser');
+
+                    var user = {
+                        account: this.data.account
+                    };
+                    if (this.data.nick) {
+                        user.nick = this.data.nick;
+                    }
+                    if (this.data.email) {
+                        user.email = this.data.email;
+                    }
+
+                    this.updateUser(user);
+
+                },
+
+                updateUser: function(user) {
+
+                    console.info('updateUser');
+                    var t = page.db.transaction('user', 'readwrite')
+                        os = t.objectStore('user');
+                    t.onerror = function(event) {
+                        console.log(event);
+                        console.log(event.type);
+                        console.log(event.target);
+                        console.log(event.target.error);
+                    };
+                    t.onabort = function(event) {
+                        console.log(event);
+                        console.log(event.type);
+                        console.log(event.target);
+                    };
+                    t.oncomplete = function(event) {
+                        console.log(event);
+                        console.log(event.type);
+                        console.log(event.target);
+
+                        page.app.data.users.push(user);
+                        page.app.$update();
+                        page.reset();
+                    };
+                    os.put(user);
+
+                },
+
+                deleteUser: function(account) {
+
+                    console.info('deleteUser');
+                    var t = page.db.transaction('user', 'readwrite'),
+                        os = t.objectStore('user');
+                    t.onerror = function(event) {
+                        console.log(event);
+                        console.log(event.type);
+                        console.log(event.target);
+                        console.log(event.target.error);
+                    };
+                    t.onabort = function(event) {
+                        console.log(event);
+                        console.log(event.type);
+                        console.log(event.target);
+                    };
+                    t.oncomplete = function(event) {
+                        console.log(event);
+                        console.log(event.type);
+                        console.log(event.target);
+
+                        var index = -1;
+                        page.app.data.users.some(function(user, i) {
+                            if (user.account === account) {
+                                index = i;
+                                return true;
+                            }
+                        });
+                        if (index !== -1) {
+                            page.app.data.users.splice(index, 1);
+                            page.app.$update();
+                        }
+                    };
+                    os.delete(account);
+
+                }
+
+            }).$inject(document.body);
+
+        },
+
+        reset: function() {
+            page.app.$update({
+                account: '',
+                nick: '',
+                email: ''
+            });
+        }
+
+    };
+
+    page.init();
+
+    </script>
+</body>
+</html>

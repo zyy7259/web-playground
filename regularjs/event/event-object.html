@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular - event object</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+    
+    <script>
+    new Regular({
+        // 使用$event来获取事件对象
+        template: '<div><button on-click={this.add(2, $event)}>count+2</button>{count}</div>',
+        data: {
+            count: 1
+        },
+        add: function(step, $event) {
+            console.log($event);
+            this.data.count += step;
+            alert($event.pageX);
+        }
+    }).$inject(document.body);
+    </script>
+</body>
+</html>

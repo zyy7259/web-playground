@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular r-model</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+
+    <script type="text/regular" id="tpl">
+        <form>
+            <div class="form-group">
+                <label for="email">Email Address(value:{email})</label>
+                <input type="text" id="email" r-model={email}>
+            </div>
+            <div class="form-group">
+                <label for="password">Password(value:{password})</label>
+                <input type="password" name="" id="password" class="form-control" r-model="password">
+            </div>
+            <div class="checkbox">
+                <label for="checkbox">Check me(value:{checked})</label>
+                <input type="checkbox" name="" id="checkbox" checked r-model={checked}>
+            </div>
+            <div class="form-group">
+                <span on-click={radio="option2"}>radio={radio}</span>
+            </div>
+            <div class="radio">
+                <label for="radioOptions1">Option one is this and that&mdash;be sure to include why its great</label>
+                <input type="radio" name="radioOptions" id="radioOptions1" value="option1" r-model={radio}>
+            </div>
+            <div class="radio">
+                <label for="radioOptions2">Option two can be something else and selecting it will deselect option one</label>
+                <input type="radio" name="radioOptions" id="radioOptions2" value="option2" checked r-model={radio}>
+            </div>
+            <div class="from-group">
+                {textarea}
+                <textarea class="form-control" rows="3" r-model="textarea">haha</textarea>
+            </div>
+            <p>{select}</p>
+            <select class="form-control" id="select" r-model={select}>
+                <option selected value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </script>
+
+    <script>
+        var Modal = Regular.extend({
+            template: '#tpl'
+        });
+        var app = new Modal().$inject(document.body);
+
+        app.$watch('email', function(value) {
+            if (value.indexOf('@') === -1) {
+                app.data.email = value + '@';
+            }
+        });
+        app.$watch('select', function(value) {
+            if (value == 2) {
+                app.data.select = 4;
+            }
+        });
+    </script>
+</body>
+</html>

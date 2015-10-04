@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular filter json</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+    
+    <script>
+    new Regular({
+        template: "json: {obj|json} <input r-model={obj|json}> <button type='button' on-click={this.update()}>update</button>",
+        data: {
+            obj: {
+                name: 'zyy'
+            }
+        },
+        update: function() {
+            this.$update('obj|json', '{"name":"bingo"}');
+        }
+    }).$inject(document.body);
+    </script>
+</body>
+</html>

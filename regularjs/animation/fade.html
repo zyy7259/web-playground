@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animation - fade</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="app"></div>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+
+    <script type="text/regular" id="rgl">
+        <div class="box animated" r-animation="on:click; class:swing; fade:out; fade:in;">
+            fade: click me
+        </div>
+    </script>
+    <script>
+    Regular.animation('fade', function(obj) {
+        var param = obj.param,
+            element = obj.element,
+            fadein = param === 'in',
+            factor = fadein ? 1.05 : 0.9;
+        return function(done) {
+            var opacity = fadein ? 0.01 : 1;
+            var tid = setInterval(function() {
+                opacity *= factor;
+                if (fadein && 1-opacity < 1e-3) {
+                    opacity = 1;
+                    clearInterval(tid);
+                    done();
+                } else if (!fadein && opacity < 1e-3) {
+                    opacity = 0;
+                    clearInterval(tid);
+                    done();
+                }
+                element.style.opacity = opacity;
+            }, 1000/60);
+        };
+    });
+    new Regular({
+        template: '#rgl'
+    }).$inject('#app');
+    </script>
+</body>
+</html>

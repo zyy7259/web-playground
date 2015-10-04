@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular - pager</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+    <style>
+        .m-page{margin:10px 0 0;text-align:center;line-height:32px;font-size:0;letter-spacing:-0.307em;*letter-spacing:normal;*word-spacing:-1px;word-wrap:normal;white-space:nowrap;color:#999;}
+        .m-page a,.m-page i{display:inline-block;*display:inline;*zoom:1;vertical-align:top;padding:0 12px;margin-left:-1px;border:1px solid #ddd;font-size:12px;letter-spacing:normal;word-spacing:normal;text-shadow:0 1px #fff;background:#fff;-webkit-transition:background-color 0.3s;-moz-transition:background-color 0.3s;-ms-transition:background-color 0.3s;transition:background-color 0.3s;}
+        .m-page a,.m-page a:hover{text-decoration:none;color:#39c;}
+        .m-page a.first{margin-left:0;border-top-left-radius:5px;border-bottom-left-radius:5px;}
+        .m-page a.last{margin-right:0;border-top-right-radius:5px;border-bottom-right-radius:5px;}
+        .m-page a .pagearr{font-weight:bold;font-family:\5b8b\4f53;vertical-align:top;*vertical-align:middle;}
+        .m-page a.pageprv .pagearr{margin-right:3px;}
+        .m-page a.pagenxt .pagearr{margin-left:3px;}
+        .m-page a:hover{background:#f5f5f5;}
+        .m-page a:active{background:#f0f0f0;}
+        .m-page a.z-crt,.m-page a.z-crt:hover,.m-page a.z-crt:active{cursor:default;color:#999;background:#f5f5f5;}
+        .m-page a.z-dis,.m-page a.z-dis:hover,.m-page a.z-dis:active{cursor:default;color:#ccc;background:#fff;}
+    </style>
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+    
+    <script type="text/regular" id="pager">
+        <div class="m-page {clazz}">
+            <a href="javascript:;" on-click={this.nav(current-1)} class="pageprv {current==1?'z-dis':''}">Prev</a>
+            {#if total-5 > offset*2}
+                <a href="javascript:;" on-click={this.nav(1)} class={current==1?'z-crt':''}>1</a>
+                {#if begin > 2}<i>...</i>{/if}
+                {#list begin..end as i}
+                <a href="javascript:;" on-click={this.nav(i)} class={current==i?'z-crt':''}>{i}</a>
+                {/list}
+                {#if (end < total-1)}<i>...</i>{/if}
+                <a href="javascript:;" on-click={this.nav(total)} class={current==total?'z-crt':''}>{total}</a>
+            {#else}
+                {#list 1..total as i}
+                <a href="javascript:;" on-click={this.nav(i)} class={current==i?'z-crt':''}>{i}</a>
+                {/list}
+            {/if}
+            <a href="javascript:;" on-click={this.nav(current+1)} class="pagenxt {current==total?'z-dis':''}">Next</a>
+        </div>
+    </script>
+
+    <script>
+        var Pager = Regular.extend({
+            name: 'pager',
+            template: '#pager',
+            // before init
+            config: function(data) {
+                var count = 5;
+                var offset = data.offset = Math.floor(count/2);
+                data.current = data.current || 1;
+                data.total = data.total || 1;
+                this.$watch(['current', 'total'], function(current, total) {
+                    data.begin = current - offset;
+                    data.end = current + offset;
+                    if (data.begin < 2) data.begin = 2;
+                    if (data.end > data.total-1) data.end = data.total-1;
+                    if (current - data.begin <= 1) data.end = data.begin + offset*2;
+                    if (data.end - current <= 1) data.begin = data.end - offset*2;
+                })
+            },
+            nav: function(page) {
+                var data = this.data;
+                if (page < 1) return;
+                if (page > data.total) return;
+                if (page === data.current) return;
+                data.current = page;
+                this.$emit('nav', page);
+            }
+        });
+    </script>
+
+    <script type="text/regular" id="rgl">
+        {list.length}:{current}
+        <pager total={Math.floor(list.length/20)} current={current} on-nav={this.changePage($event)}/>
+        <pager total={Math.floor(list.length/20)} current={current}/>
+    </script>
+
+    <script>
+        var App = Regular.extend({
+            template: '#rgl',
+            changePage: function(page) {
+                console.log('you click the first pager, and nav to page ' + page);
+            }
+        });
+        new App({
+            data: {
+                list: new Array(300)
+            }
+        }).$inject(document.body);
+        new App({
+            data: {
+                list: new Array(180),
+                current: 5
+            }
+        }).$inject(document.body);
+
+        var pager = new Pager({data: {total: 100, current: 20}}).$inject(document.body);
+        var pager2 = new Pager({data: {total: 50, current: 2}}).$inject(document.body);
+        var pager3 = new Pager({data: {total: 100, current: 20}}).$inject(document.body);
+        var pager4 = new Pager({data: {total: 50, current: 2}}).$inject(document.body);
+        var pager5 = new Pager({data: {total: 100, current: 20}}).$inject(document.body);
+        var pager6 = new Pager({data: {total: 50, current: 2}}).$inject(document.body);
+        // style 1
+        pager.$bind(pager2, ['total', 'current']);
+        // style 2
+        pager3.$bind(pager4, 'total', 'total');
+        pager3.$bind(pager4, 'current');
+        // style 3
+        pager5.$bind(pager6, {
+            total: 'total',
+            current: 'current'
+        });
+    </script>
+</body>
+</html>

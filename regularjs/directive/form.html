@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular - directive</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+    
+    <script>
+    Regular.directive('ng-model', function(elem, expression) {
+        var self = this;
+        this.$watch(expression, function(newValue) {
+            elem.value = newValue;
+        });
+        function updateModel() {
+            expression.set(self, elem.value);
+            self.$update();
+        }
+        elem.addEventListener('input', updateModel);
+    });
+    new Regular({
+        template: '<input type="text" ng-model={user.name} autofocus> {user.name}',
+        data: {
+            user: {
+                name: 'zyy'
+            }
+        }
+    }).$inject(document.body);
+    </script>
+</body>
+</html>

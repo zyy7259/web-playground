@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Star ratings</title>
+    <link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <style>
+    body{
+        padding:100px;
+    }
+    .rating{
+        unicode-bidi:bidi-override;
+        direction:rtl;
+        text-align:center;
+    }
+    .star:before{
+        content:'\f006';
+    }
+    .star:hover:before, .star:hover ~ .star:before{
+        content:'\f005';
+        color:#e3cf7a;
+    }
+    </style>
+</head>
+<body>
+    <div class="rating">
+        <i class="star fa fa-4x"></i>
+        <i class="star fa fa-3x"></i>
+        <i class="star fa fa-2x"></i>
+        <i class="star fa fa-lg"></i>
+        <i class="star fa"></i>
+    </div>
+</body>
+</html>

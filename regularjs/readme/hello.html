@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular - hello</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+
+    <script type="text/regular" id="rgl">
+        {#if username}
+            Hello, {username}. <a href="javascript:;" on-click={username=''}>Logout</a>
+        {#else}
+            Sorry, Guest. <a href="javascript:;" on-click={this.login()}>Login</a>
+        {/if}
+    </script>
+
+    <script>
+    var Hello = Regular.extend({
+        template: '#rgl',
+        login: function() {
+            var data = this.data;
+            data.username = prompt('please enter your username', 'zyy')
+        }
+    });
+    var hello = new Hello({
+        data: {username: 'zyy'}
+    });
+    hello.$inject(document.body);
+    </script>
+</body>
+</html>

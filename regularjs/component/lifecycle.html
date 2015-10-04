@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular - life cycle</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+    
+    <script>
+        /*
+         * $config会在compile之前触发，可以在此时处理组件数据
+         * $init会在compile之后触发，此时dom结构已经生成，可以通过ref来获取引用
+         * $destroy，会在组件被destroy时触发
+         * $update，在一次digest阶段，如果数据有更新，那么会触发一次$update事件
+         */
+        new Regular({
+            template: 'foo',
+        }).$inject(document.body);
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular - notelist</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+    <style>
+    .done{
+        text-decoration:line-through;
+    }
+    </style>
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+
+    <script type="text/regular" id="rgl">
+        <ul>
+            {#list notes as nt}
+            <li class={nt.done?'done':''} on-click={nt.done=!nt.done}>{nt.content}</li>
+            {/list}
+        </ul>
+    </script>
+
+    <script>
+    var NoteList = Regular.extend({
+        template: '#rgl'
+    });
+    var list = new NoteList({
+        data: {notes: [{content: 'playgame'}, {content: 'homework'}]}
+    }).$inject(document.body);
+    </script>
+</body>
+</html>

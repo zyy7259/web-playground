@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animation - circle</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="app"></div>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+
+    <script type="text/regular" id="rgl">
+        <button {#if test===0}on-click={test=1}{#else}disabled{/if}>start</button> test: {test}<br>
+        <div class="box animated" r-animation="when:test==1; class:shake; call:test=2;">
+            box1: shake
+        </div>
+        <div class="box animated" r-animation="when:test==2; class:bounce; call:test=3;">
+            box2: bounce
+        </div>
+        <div class="box animated" r-animation="when:test==3; class:swing; call:test=1;">
+            box3: swing
+        </div>
+    </script>
+    
+    <script>
+    new Regular({
+        template: '#rgl',
+        data: {
+            test: 0
+        }
+    }).$inject('#app');
+    </script>
+</body>
+</html>

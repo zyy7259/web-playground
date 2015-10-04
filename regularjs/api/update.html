@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular api update</title>
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+    <script>
+    var component = new Regular({
+        template: '<h2 ref="h2" on-click={title=title.toLowerCase()}>{title}</h2>',
+        data: {
+            title: 'RegularJS'
+        }
+    });
+    console.log('initial:', component.$refs.h2.innerHTML);
+    component.data.title = 'ZYY';
+    console.log('after change:', component.$refs.h2.innerHTML);
+    component.$update();
+    console.log('after $update:', component.$refs.h2.innerHTML);
+    component.$refs.h2.click();
+    console.log('after click', component.$refs.h2.innerHTML);
+    </script>
+</body>
+</html>

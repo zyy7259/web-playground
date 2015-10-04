@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular - filter</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+    
+    <script>
+    var formatFilter = (function() {
+        function fix(str) {
+            str = '' + str;
+            return str.length === 1 ? '0'+str : str;
+        }
+        var maps = {
+            'yyyy': function(date) { return date.getFullYear(); },
+            'MM': function(date) { return fix(date.getMonth() + 1); },
+            'dd': function(date) { return fix(date.getDate()); },
+            'HH': function(date) { return fix(date.getHours()); },
+            'mm': function(date) { return fix(date.getMinutes()); }
+        };
+        var trunk = new RegExp(Object.keys(maps).join('|'), 'g');
+        return function(date, format) {
+            format = format || 'yyyy-MM-dd HH:mm';
+            date = new Date(date);
+            return format.replace(trunk, function(capture) {
+                return maps[capture] ? maps[capture](date) : '';
+            });
+        };
+    })();
+    Regular.filter('format', formatFilter);
+    new Regular({
+        template: '<p>{time|format}</p><p>{time|format:"yyyy-MM-dd"}</p><p>{time|format:"HH:mm"}</p>',
+        data: {
+            time: new Date()
+        }
+    }).$inject(document.body);
+    </script>
+</body>
+</html>

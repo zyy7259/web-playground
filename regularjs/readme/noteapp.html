@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular - noteapp</title>
+    <link rel="stylesheet" href="/node_modules/purecss/build/pure.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+    <style>
+    li.done{
+        text-decoration:line-through;
+    }
+    li{
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+
+    <script type="text/regular" id="note">
+        <input r-model={draft}><button on-click={this.post()}>post</button>
+    </script>
+
+    <script type="text/regular" id="notelist">
+        <ul>
+            {#list notes as nt}
+            <li class={nt.done?'done':''} on-click={nt.done=!nt.done}>{nt.content}</li>
+            {/list}
+        </ul>
+    </script>
+
+    <script type="text/regular" id="noteapp">
+        <note on-post={notes.push({content:$event})}/>
+        <notelist notes={notes}></notelist>
+    </script>
+
+    <script>
+    var Note = Regular.extend({
+        name: 'note',
+        template: '#note',
+        post: function() {
+            var data = this.data;
+            this.$emit('post', data.draft);
+            data.draft = '';
+        }
+    });
+    var NoteList = Regular.extend({
+        name: 'notelist',
+        template: '#notelist'
+    });
+    var NoteApp = Regular.extend({
+        template: '#noteapp'
+    });
+    var noteapp = new NoteApp({
+        data: {notes: [{content: 'homework'}]}
+    });
+    noteapp.$inject(document.body);
+    </script>
+</body>
+</html>
