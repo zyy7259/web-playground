@@ -41,7 +41,7 @@
     <script src="/node_modules/platform/platform.js"></script>
     <script>
     $('#info').text(JSON.stringify(platform, null, 4));
-    var ua = window.navigator.userAgent
+    var ua = window.navigator.userAgent;
     $('#ua').text(ua);
     var isSafari = /safari/ig.test(ua);
     var isStandalone = window.navigator.standalone;

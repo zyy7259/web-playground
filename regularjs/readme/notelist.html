@@ -16,20 +16,25 @@
 <body>
     <script src="/node_modules/regularjs/dist/regular.js"></script>
 
-    <script type="text/regular" id="rgl">
+    <script type="text/regular" id="tpl">
         <ul>
-            {#list notes as nt}
-            <li class={nt.done?'done':''} on-click={nt.done=!nt.done}>{nt.content}</li>
+            {#list notes as note}
+            <li class={note.done?'done':''} on-click={note.done=!note.done}>{note.content}</li>
             {/list}
         </ul>
     </script>
 
     <script>
     var NoteList = Regular.extend({
-        template: '#rgl'
+        template: '#tpl'
     });
     var list = new NoteList({
-        data: {notes: [{content: 'playgame'}, {content: 'homework'}]}
+        data: {
+            notes: [
+                {content: 'playgame'}, 
+                {content: 'homework'}
+            ]
+        }
     }).$inject(document.body);
     </script>
 </body>

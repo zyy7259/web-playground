@@ -25,7 +25,9 @@
         account: <input type="text" r-model={account}>
         nick: <input type="text" r-model={nick}>
         email: <input type="text" r-model={email}>
+        <br>
         <button type="button" on-click={this.addUser()}>addUser</button>
+        <button type="button" on-click={this.getUser()}>getUser</button>
     </div>
     {#if !!users.length}
     <ul>
@@ -166,8 +168,21 @@
                         console.log(event.type);
                         console.log(event.target);
 
-                        page.app.data.users.push(user);
-                        page.app.$update();
+                        var app = page.app,
+                            users = app.data.users,
+                            index = -1;
+                        users.some(function(u, i) {
+                            if (u.account = user.account) {
+                                index = i;
+                                return true;
+                            }
+                        });
+                        if (index !== -1) {
+                            users[index] = user;
+                        } else {
+                            users.push(user);
+                        }
+                        app.$update();
                         page.reset();
                     };
                     os.put(user);
@@ -209,6 +224,33 @@
                     };
                     os.delete(account);
 
+                },
+
+                getUser: function() {
+                    console.info('getUser');
+                    var account = page.app.data.account;
+                    if (!account) {
+                        alert('请输入账号');
+                        return;
+                    }
+
+                    var t = page.db.transaction('user'),
+                        os = t.objectStore('user'),
+                        user = null;
+                    t.onerror = function(event) {
+                        console.error(event.target.error);
+                    };
+                    t.oncomplete = function(event) {
+                        console.log(event.target);
+                    };
+                    os.get(account).onsuccess = function(event) {
+                        user = event.target.result || {
+                            account: account,
+                            nick: '',
+                            email: ''
+                        };
+                        page.app.$update(user);
+                    };
                 }
 
             }).$inject(document.body);

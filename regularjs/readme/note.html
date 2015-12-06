@@ -12,7 +12,7 @@
     <script src="/node_modules/regularjs/dist/regular.js"></script>
 
     <!-- switch directive and attribute by if -->
-    <script type="text/regular" id="rgl">
+    <script type="text/regular" id="tpl">
         <input {#if !disabled}r-model='hello'{#else}disabled{/if}>
         {hello}
         <button on-click={disabled=!disabled}>{disabled?'active':'disable'}</button>
@@ -20,7 +20,7 @@
 
     <script>
     var Note = Regular.extend({
-        template: '#rgl'
+        template: '#tpl'
     });
     var note = new Note().$inject(document.body);
     </script>

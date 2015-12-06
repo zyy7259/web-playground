@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Safari IndexedDB</title>
+    <!-- link -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- script -->
+    <script src="/node_modules/regularjs/dist/regular.min.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/db.js/src/db.js"></script>
+
+    <script>
+    var page = {
+        init: function() {
+            page.initDB();
+        },
+        initDB: function() {
+            if (!window.indexedDB) {
+                alert('no indexedDB');
+                return;
+            }
+            console.info('open DB');
+            var r = window.indexedDB.open('safari', 2);
+            r.onerror = function(event) {
+                console.error('open db error', event.target.error);
+            };
+            r.onsuccess = function(event) {
+                page.db = event.target.result;
+                page.insertData();
+            };
+            r.onupgradeneeded = function(event) {
+                var db = event.target.result;
+                page.db = db;
+                if (!db.objectStoreNames.contains('user')) {
+                    page.db.createObjectStore('user', {keyPath:'account'});
+                }
+                if (!db.objectStoreNames.contains('people')) {
+                    page.db.createObjectStore('people', {keyPath:'account'});
+                }
+            };
+        },
+        insertData: function() {
+            console.info('insert data');
+            var 
+                // t = page.db.transaction(['user', 'people'], 'readwrite'),
+                // userOS = t.objectStore('user'),
+                // peopleOS = t.objectStore('people'),
+                t1 = page.db.transaction('user', 'readwrite'),
+                t2 = page.db.transaction('people', 'readwrite'),
+                userOS = t1.objectStore('user'),
+                peopleOS = t2.objectStore('people'),
+                user = {
+                    account: 1
+                },
+                people = {
+                    account: 1
+                };
+            // t.onerror = function(event) {
+            //     console.error('insert data error', event.target.error);
+            // };
+            // t.oncomplete = function(event) {
+            //     console.log('insert data done');
+            //     page.showData();
+            // };
+            userOS.put(user);
+            peopleOS.put(people);
+            setTimeout(function() {
+                page.showData();
+            }, 250);
+        },
+        showData: function() {
+            console.info('show data');
+            var 
+                // t = page.db.transaction(['user', 'people'], 'readwrite'),
+                // userOS = t.objectStore('user'),
+                // peopleOS = t.objectStore('people'),
+                t1 = page.db.transaction('user', 'readwrite'),
+                t2 = page.db.transaction('people', 'readwrite'),
+                userOS = t1.objectStore('user'),
+                peopleOS = t2.objectStore('people'),
+                users = [],
+                people = [];
+            // t.onerror = function(event) {
+            //     console.error('show data error', event.target.error);
+            // };
+            // t.oncomplete = function(event) {
+            //     console.log('show data done');
+            //     page.updateData(users, people);
+            // };
+            userOS.openCursor().onsuccess = function(event) {
+                var c = event.target.result;
+                if (c) {
+                    users.push(c.value);
+                    c.continue();
+                }
+            };
+            peopleOS.openCursor().onsuccess = function(event) {
+                var c = event.target.result;
+                if (c) {
+                    people.push(c.value);
+                    c.continue();
+                }
+            };
+            setTimeout(function() {
+                page.updateData(users, people);
+            }, 250);
+        },
+        updateData: function(users, people) {
+            console.log('update data');
+            var userStr = 'users: ' + JSON.stringify(users);
+            var peopleStr = 'people: ' + JSON.stringify(people);
+            var $user = $('<p>').text(userStr);
+            var $people = $('<p>').text(peopleStr);
+            $(document.body).append($user).append($people);
+        }
+    };
+    page.init();
+    </script>
+</body>
+</html>

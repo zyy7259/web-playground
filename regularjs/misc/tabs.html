@@ -24,7 +24,7 @@
                 </li>
                 {/list}
             </ul>
-            <r-content>
+            {#inc this.$body}
         </div>
     </script>
 
@@ -75,8 +75,9 @@
         Regular.extend({
             name: 'tabpane',
             data: {selected: false},
-            template: '<div r-hide={!selected}><r-content></div>',
+            template: '<div r-hide={!selected}>{#inc this.$body}</div>',
             config: function() {
+                debugger;
                 if (this.$outer) {
                     var tabs = this.$outer.data.tabs;
                     if (tabs.length === 0) this.data.selected = true;
@@ -94,16 +95,20 @@
                 todos: [1,2,3,4]
             },
             search: function(month) {
-                alert(month)
+                alert(month);
             }
         });
         new App().$inject(document.body);
 
         // Tabs use in initialize way
-        var body = '\
-        <tabpane title="<b>tab</b>1" on-active={user.unread_messages_count+=2}>Tab init by $body {user.username}</tabpane>\
-        <tabpane title="<b>tab</b>2" on-active={user.unread_messages_count+=2}>Your username is: <b>{user.username}</b><input r-model={user.username}></tabpane>\
-        ';
+        var body = 
+            '<tabpane title="<b>tab</b>1" on-active={user.unread_messages_count+=2}>' +
+                'Tab init by $body {user.username}' +
+            '</tabpane>' +
+            '<tabpane title="<b>tab</b>2" on-active={user.unread_messages_count+=2}>' +
+                'Your username is: <b>{user.username}</b><input r-model={user.username}>' +
+            '</tabpane>';
+
         new Tabs({
             $body: body,
             data: {
