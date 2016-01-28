@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>title</title>
+    <!-- link -->
+    <style type="text/css">
+    .foo {
+        width: 100px;
+        height: 100px;
+        margin: 100px auto;
+        background-color: teal;
+    }
+    </style>
+</head>
+<body>
+    <div class="foo"></div>
+    <button type="button" id="start">Start</button>
+    <!-- script -->
+    <script src="/node_modules/scrollreveal/dist/scrollreveal.js"></script>
+    <script type="text/javascript">
+    window.sr = ScrollReveal();
+    document.getElementById('start').addEventListener('click', function() {
+        sr.reveal('.foo', {
+            reset: true
+        });
+    });
+    </script>
+</body>
+</html>

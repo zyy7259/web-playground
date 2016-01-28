@@ -16,7 +16,22 @@
 </head>
 <body>
     <!-- script -->
-    <script src="js/alphabeta.js"></script>
-    <script src="js/MyLibrary.beta.js"></script>
+    <script>
+    var dom = {
+        addEventListener: function(node, type, callback) {
+            if (node.addEventListener) {
+                node.addEventListener(type, callback, false);
+            } else {
+                node.attachEvent('on'+type, callback);
+            }
+        }
+    };
+    dom.addEventListener(window, 'storage', function(e) {
+        console.log(e);
+    });
+    window.localStorage['pageA-local'] = +new Date();
+    window.sessionStorage['pageA-session'] = +new Date();
+    </script>
+    <iframe src="iframeA.html"></iframe>
 </body>
 </html>

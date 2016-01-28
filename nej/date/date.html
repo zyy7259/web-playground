@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>title</title>
+    <title>date</title>
     <!-- link -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -16,7 +16,34 @@
 </head>
 <body>
     <!-- script -->
-    <script src="js/alphabeta.js"></script>
-    <script src="js/MyLibrary.beta.js"></script>
+    <script src="/nej/src/define.js"></script>
+    <script>
+    define([
+        'base/util'
+    ], function(u, p) {
+        // 使用 / 分隔符获取的是 0 点
+        var now = new Date();
+        var str = u._$format(now, 'yyyy/MM/dd');
+        var midnight = u._$var2date(str);
+        
+        console.log(now);
+        console.log(str);
+        console.log(midnight);
+
+        // 使用 - 分隔符获取的是 8 点
+        str = u._$format(now, 'yyyy-MM-dd');
+        midnight = u._$var2date(str);
+        
+        console.log(str);
+        console.log(midnight);
+
+        // 手动加上 HH:mm:ss
+        str += ' 00:00:00:000';
+        midnight = u._$var2date(str);
+
+        console.log(str);
+        console.log(midnight);
+    });
+    </script>
 </body>
 </html>

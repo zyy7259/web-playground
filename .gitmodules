@@ -1,0 +1,3 @@
+[submodule "regular-ui"]
+	path = regular-ui
+	url = git@github.com:zyy7259/regular-ui.git
