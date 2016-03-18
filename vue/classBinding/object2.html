@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div id="app" class="static" v-bind:class="classObject"></div>
+        <script src="/node_modules/vue/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    classObject: {
+                        'class-a': true,
+                        'class-b': false
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

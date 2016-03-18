@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div id="demo">
+            <p>{{message}}</p>
+            <input type="text" v-model="message">
+        </div>
+        <script src="/node_modules/vue/dist/vue.js"></script>
+        <script>
+            var demo = new Vue({
+                el: '#demo',
+                data: {
+                    message: 'Hello Vue.js!'
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+        .trigger {
+            width: 100px;
+            height: 30px;
+            background-color: teal;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="trigger"></div>
+        <input class="ipt" hidden></input>
+        <script src="/nej/nej/src/define.js"></script>
+        <script>
+            define([
+                'ui/suggest/suggest'
+            ], function(_s) {
+                var suggest = _s._$$Suggest._$allocate({
+                    input: document.querySelector('.ipt'),
+                    onselect: function() {
+                        console.log(arguments);
+                    }
+                });
+                suggest._$setList(['1','2','3']);
+            });
+        </script>
+    </body>
+</html>

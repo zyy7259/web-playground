@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>title</title>
+    <!-- link -->
+    <style type="text/css">
+    img {
+        opacity: 0.1;
+    }
+    .f-dn {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <video autoplay controls></video>
+    <img src="">
+    <canvas class="f-dn"></canvas>
+    <!-- script -->
+    <script>
+    navigator.getUserMedia = navigator.getUserMedia || 
+                            navigator.webkitGetUserMedia ||
+                            navigator.mozGetUserMedia || 
+                            navigator.msGetUserMedia;
+    MediaStreamTrack.getSources(function(sources) {
+        console.log(sources);
+    });
+    var errorCallback = function(e) {
+        console.log('Rejected', e);
+    };
+    navigator.getUserMedia({
+        video: true,
+        audio: true,
+    }, function(mediaStream) {
+        var video = document.querySelector('video');
+        video.src = window.URL.createObjectURL(mediaStream);
+        var canvas = document.querySelector('canvas');
+        var cctx = canvas.getContext('2d');
+        var img = document.querySelector('img');
+        video.addEventListener('click', function() {
+            cctx.drawImage(video, 0, 0);
+            img.src = canvas.toDataURL('image/webp');
+        });
+    }, errorCallback);
+    </script>
+</body>
+</html>

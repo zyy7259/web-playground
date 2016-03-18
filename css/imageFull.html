@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+        body,html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #mask {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.5);
+        }
+        #container {
+            position: absolute;
+            top: 20px;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            border: 3px solid silver;
+        }
+        #imgWrap {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            transition: all .6s ease;
+        }
+        img {
+            transition: all .3s ease;
+            margin-bottom: 20px;
+        }
+        #description {
+            margin: 0 auto;
+            width: 200px;
+            height: 80px;
+            background-color: teal;
+        }
+        .f-dn {
+            display: none;
+        }
+        </style>
+    </head>
+    <body>
+    <!-- small -->
+    <!-- http://imglf0.nosdn.127.net/img/aGJlbGZJV0hac3ZPelhQQTJvb2VkeHc0TFZzdGpLUWRLMzdxbjFlaEkvQ0UvVHFyOXE0MHF3PT0.jpg?imageView&thumbnail=500x0&quality=96&stripmeta=0&type=jpg -->
+    <!-- large -->
+    <!-- http://imglf0.nosdn.127.net/img/aGJlbGZJV0hac3ZPelhQQTJvb2VkeHc0TFZzdGpLUWRLMzdxbjFlaEkvQ0UvVHFyOXE0MHF3PT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg -->
+        <div id="mask">
+            <div id="container">
+                <div id="imgWrap">
+                    <img src="http://imglf0.nosdn.127.net/img/aGJlbGZJV0hac3ZPelhQQTJvb2VkeHc0TFZzdGpLUWRLMzdxbjFlaEkvQ0UvVHFyOXE0MHF3PT0.jpg?imageView&thumbnail=500x0&quality=96&stripmeta=0&type=jpg">
+                    <p id="description"></p>
+                </div>
+            </div>
+            <img src="http://imglf0.nosdn.127.net/img/aGJlbGZJV0hac3ZPelhQQTJvb2VkeHc0TFZzdGpLUWRLMzdxbjFlaEkvQ0UvVHFyOXE0MHF3PT0.jpg?imageView&thumbnail=500x0&quality=96&stripmeta=0&type=jpg" class="f-dn">
+        </div>
+        <script type="text/javascript">
+            var $mask = document.querySelector('#mask');
+            var $container = document.querySelector('#container');
+            var $imgWrap = document.querySelector('#imgWrap');
+            var $img = document.querySelector('img');
+            var $hiddenImg = document.querySelector('img.f-dn');
+            
+            window.addEventListener('resize', resize);
+
+            setTimeout(function() {
+                resize();
+            }, 100);
+
+            function resize() {
+                var originWidth = $hiddenImg.width;
+                var originHeight = $hiddenImg.height;
+
+                var maxWidth = $container.clientWidth;
+                var maxHeight = $container.clientHeight;
+
+                $imgWrap.style.width = $container.clientWidth + 'px';
+                $imgWrap.style.height = $container.clientHeight + 'px';
+
+                // maxHeight = maxHeight - textHeight;
+                
+                // 先按宽来算
+                var width = maxWidth;
+                var height = width * originHeight / originWidth;
+                if (height > maxHeight) {
+                    height = maxHeight;
+                    width = height * originWidth / originHeight;
+                }
+                
+                if (width < originWidth) {
+                    $img.style.width = width + 'px';
+                    $img.style.height = height + 'px';
+                }
+            }
+        </script>
+    </body>
+</html>

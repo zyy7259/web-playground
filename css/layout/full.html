@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        html, body, div {
+            padding: 0;
+            margin: 0;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        .f-cb:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
+        #wrapper {
+            position: relative;
+            min-height: 100%;
+            background: teal;
+        }
+        #sidebar {
+            position: relative;
+            float: left;
+            width: 90px;
+            margin-right: -90px;
+            background: white;
+        }
+        #container {
+            float: right;
+            width: 100%;
+            background: grey;
+        }
+        .container-content {
+            position: absolute;
+            margin-left: 100px;
+            height: 100%;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="wrapper" class="f-cb">
+            <div id="sidebar">
+                asdf
+            </div>
+            <div id="container" class="f-cb">
+                <div class="container-content">
+                    asdf
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

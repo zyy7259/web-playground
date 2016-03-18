@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!-- videojs -->
+        <link rel="stylesheet" type="text/css" href="/node_modules/video.js/dist/video-js.css">
+        <!-- flowplayer -->
+        <link rel="stylesheet" type="text/css" href="/node_modules/flowplayer/dist/skin/minimalist.css">
+        <style type="text/css">
+        .f-cb:after {
+            display: block;
+            content: ' ';
+            height: 0;
+            clear: both;
+            visibility: hidden;
+            overflow: hidden;
+        }
+        .group {
+            padding: 10px;
+            border: 1px solid silver;
+            background-color: rgba(0,0,0,0.2);
+        }
+        .player {
+            float: left;
+            width: 320px !important;
+            height: 200px !important;
+        }
+        .player + .player {
+            margin-left: 10px;
+        }
+        </style>
+    </head>
+    <body>
+        <script>
+            var srcs = [
+                // RTMP
+                'rtmp://v1.live.126.net/live/f605e6ac535f40bd90c976655cc0f7ef',
+                // HTTP
+                'http://v1.live.126.net/live/f605e6ac535f40bd90c976655cc0f7ef.flv',
+                // HLS
+                'http://v1.live.126.net/live/f605e6ac535f40bd90c976655cc0f7ef/playlist.m3u8'
+            ];
+            var types = [
+                // RTMP
+                'rtmp/flv',
+                // HTTP
+                'video/x-flv',
+                // HLS
+                'application/x-mpegURL'
+            ];
+        </script>
+
+        <h2>RTMP HTTP/flv HLS</h2>
+
+        <h2>videojs</h2>
+        <div id="players-videojs" class="group f-cb">
+            <video class="player video-js vjs-default-skin" controls preload="auto"></video>
+            <video class="player video-js vjs-default-skin" controls preload="auto"></video>
+            <video class="player video-js vjs-default-skin" controls preload="auto"></video>
+        </div>
+
+        <!-- videojs -->
+        <script src="/node_modules/video.js/dist/alt/video.novtt.js"></script>
+        <script src="/node_modules/videojs-contrib-hls/dist/videojs.hls.js"></script>
+        
+        <script>
+            var videos = document.querySelectorAll('#players-videojs video');
+
+            var src0 = srcs[0];
+            var type0 = types[0];
+            var videojsPlayer0 = window.videojsPlayer0 = videojs(videos[0], {
+                controlBar: {
+                    progressControl: false,
+                    remainingTimeDisplay: false
+                }
+            });
+            videojsPlayer0.src({
+                src: src0,
+                type: type0
+            });
+
+            var src1 = srcs[1];
+            var type1 = types[1];
+            var videojsPlayer1 = window.videojsPlayer1 = videojs(videos[1]);
+            videojsPlayer1.src({
+                src: src1,
+                type: type1
+            });
+
+            var src2 = srcs[2];
+            var type2 = types[2];
+            var videojsPlayer2 = window.videojsPlayer2 = videojs(videos[2]);
+            videojsPlayer2.src({
+                src: src2,
+                type: type2
+            });
+        </script>
+
+        <h2>flowplayer</h2>
+        <div id="players-flowplayer" class="group f-cb">
+            <div class="player flowplayer"></div>
+            <div class="player flowplayer"></div>
+            <div class="player flowplayer"></div>
+        </div>
+
+        <!-- flowplayer -->
+        <script src="/node_modules/flowplayer/dist/flowplayer.js"></script>
+
+        <script>
+            var containers = document.querySelectorAll('#players-flowplayer .flowplayer');
+            var flowplayer0 = flowplayer(containers[0], {
+                clip: {
+                    sources: [
+                        {
+                            type: types[0],
+                            src: srcs[0]
+                        }
+                    ]
+                }
+            });
+            var flowplayer1 = flowplayer(containers[1], {
+                clip: {
+                    sources: [
+                        {
+                            type: types[1],
+                            src: srcs[1]
+                        }
+                    ]
+                }
+            });
+            var flowplayer2 = flowplayer(containers[2], {
+                clip: {
+                    sources: [
+                        {
+                            type: types[2],
+                            src: srcs[2]
+                        }
+                    ]
+                }
+            });
+        </script>
+        
+        <h2>jwplayer</h2>
+        <div id="players-jwplayer">
+            
+        </div>
+
+        <h2>sewise player</h2>
+        <div id="players-sewise-player">
+            
+        </div>
+    </body>
+</html>

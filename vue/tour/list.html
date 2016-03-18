@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+
+        <div id="app">
+            <ul>
+                <li v-for="todo in todos">
+                    {{todo.text}}
+                </li>
+            </ul>
+        </div>
+        
+        <script src="/node_modules/vue/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    todos: [
+                        {text: 'Learn JavaScript'},
+                        {text: 'Learn Vue.js'},
+                        {text: 'Build Something Awesome'}
+                    ]
+                }
+            });
+        </script>
+        
+    </body>
+</html>

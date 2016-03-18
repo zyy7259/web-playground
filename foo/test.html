@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div id="str">
+            <!-- asdfasdasfsd <!-- asdfa
+            sdf --> asd
+            fasdas -->
+        </div>
+        <script>
+            var str = `
+            <!-- asdfasdasfsd <!-- asdfa
+            sdf --> asd
+            fasdas -->
+            `;
+            var reg = /<!--(.|\s)*?-->/igm;
+            var arr = str.match(reg);
+            console.log(str);
+            console.log(reg);
+            console.log(arr);
+        </script>
+    </body>
+</html>

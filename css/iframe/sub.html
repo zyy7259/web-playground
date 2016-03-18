@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sub</title>
+    <style type="text/css">
+    body {
+        padding: 0;
+        margin: 0;
+    }
+    #cnt {
+        width: 100px;
+        height: 100px;
+        background-color: teal;
+        margin-top: -30px;
+    }
+    </style>
+</head>
+<body>
+    <div id="cnt">
+        
+    </div>
+    <script type="text/javascript">
+        window.parent.postMessage('foo', '*');
+    </script>
+</body>
+</html>

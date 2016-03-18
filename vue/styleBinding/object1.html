@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div id="app" v-bind:style="{color: activeColor, fontSize: fontSize + 'px'}"></div>
+        <script src="/node_modules/vue/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    activeColor: 'red',
+                    fontSize: 30
+                }
+            });
+        </script>
+    </body>
+</html>
