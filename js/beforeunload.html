@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script type="text/javascript">
+            window.onbeforeunload = function(event) {
+                var msg = 'sure?';
+                event.returnValue = msg;
+                return msg;
+            };
+        </script>
+    </body>
+</html>

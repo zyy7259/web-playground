@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        #main {
+            position: relative;
+            width: 300px;
+            height: 100px;
+            margin: 100px auto 0;
+            border: 1px solid silver;
+        }
+        .icon {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            margin-top: -10px;
+            background-color: teal;
+            cursor: pointer;
+            animation: roll 1s ease infinite;
+        }
+        .icon:hover {
+            background-color: red;
+        }
+        .anchor {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+        @keyframes roll {
+            0%, 100% {
+                top: 50%;
+            }
+            50% {
+                top: 0;
+            }
+        }
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <a class="anchor">
+                <span class="icon"></span>
+            </a>
+        </div>
+        <script type="text/javascript">
+            function getTop() {
+                var $icon = document.querySelector('.icon');
+                var style = window.getComputedStyle($icon);
+                console.log(style.top);
+            }
+        </script>
+    </body>
+</html>

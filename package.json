@@ -26,18 +26,19 @@
   },
   "devDependencies": {
     "bundle-loader": "^0.5.4",
-    "css-loader": "^0.23.0",
+    "css-loader": "^0.23.1",
     "flowplayer": "^6.0.5",
     "gm": "^1.21.1",
     "i18n-webpack-plugin": "^0.2.7",
-    "jquery": "^1.12.1",
+    "jquery": "^2.2.2",
     "json-loader": "^0.5.4",
     "klass": "^1.4.1",
-    "requirejs": "^2.1.22",
-    "style-loader": "^0.13.0",
-    "video.js": "^5.8.0",
+    "requirejs": "^2.2.0",
+    "style-loader": "^0.13.1",
+    "url": "^0.11.0",
+    "video.js": "^5.8.6",
     "videojs-contrib-hls": "^1.3.11",
-    "vue": "^1.0.13",
-    "webpack": "^1.12.9"
+    "vue": "^1.0.20",
+    "webpack": "^1.12.14"
   }
 }

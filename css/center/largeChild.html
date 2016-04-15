@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>center large child center</title>
+    <style>
+    body {
+        padding: 200px 0 0 100px;
+    }
+    .parent {
+        float: left;
+        position: relative;
+        width: 50px;
+        height: 50px;
+        margin-right: 200px;
+        background-color: teal;
+    }
+    .child {
+        width: 200px;
+        height: 200px;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .rude .child {
+        position: absolute;
+        top: -9999px;
+        bottom: -9999px;
+        left: -9999px;
+        right: -9999px;
+        margin: auto;
+    }
+
+    .rude1 .child {
+        position: absolute;
+        top: -100%;
+        bottom: -100%;
+        left: -100%;
+        right: -100%;
+        margin: auto;
+    }
+
+    .inner {
+        position: relative;
+        float: right;
+        right: 50%;
+    }
+    .inner .child {
+        position: relative;
+        right: -50%;
+    }
+
+    .transform .child {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    .flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .flex .child {
+        flex: none;
+    }
+    </style>
+</head>
+<body>
+    <div class="parent rude">
+        <div class="child"></div>
+    </div>
+    <div class="parent rude1">
+        <div class="child"></div>
+    </div>
+    <div class="parent outer">
+        <div class="inner">
+            <div class="child"></div>
+        </div>
+    </div>
+    <div class="parent transform">
+        <div class="child"></div>
+    </div>
+    <div class="parent flex">
+        <div class="child"></div>
+    </div>
+</body>
+</html>

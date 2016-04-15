@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"videojspl",
+				"videojsPlayer0"
+			],
+			[
+				"players",
+				"players-flowplayer"
+			],
+			[
 				"chatroom",
 				"Chatroom"
 			],
@@ -66,12 +74,23 @@
 	"expanded_folders":
 	[
 		"/Users/zyy/zyy/web-playground",
-		"/Users/zyy/zyy/web-playground/css",
-		"/Users/zyy/zyy/web-playground/css/layout",
-		"/Users/zyy/zyy/web-playground/css/mask"
+		"/Users/zyy/zyy/web-playground/css/center",
+		"/Users/zyy/zyy/web-playground/css/retina",
+		"/Users/zyy/zyy/web-playground/videojs",
+		"/Users/zyy/zyy/web-playground/videojs/video.js-5.8.0-src/dist"
 	],
 	"file_history":
 	[
+		"/Users/zyy/zyy/web-playground/css/center/horizontally.html",
+		"/Users/zyy/Downloads/NIM_Web_SDK_v2.1.0/js/Web_SDK_Base_v2.1.0.js",
+		"/Users/zyy/zyy/web-playground/videojs/readme.md",
+		"/Users/zyy/zyy/web-playground/videojs/index.html",
+		"/Users/zyy/zyy/web-playground/css/retina/background-size.html",
+		"/Users/zyy/zyy/web-playground/nej/nej/res/src/nej_proxy_upload.html",
+		"/Users/zyy/zyy/web-playground/js/beforeunload.html",
+		"/Users/zyy/zyy/web-playground/node_modules/video.js/dist/video-js.css",
+		"/Users/zyy/zyy/web-playground/node_modules/video.js/dist/alt/video-js-cdn.css",
+		"/Users/zyy/zyy/web-playground/css/layout/height.html",
 		"/Users/zyy/zyy/Netease/nim/official_website_baseline/src/main/webapp/res/icomoon-yunxin/style.css",
 		"/Users/zyy/zyy/web-playground/css/layout/full.html",
 		"/Users/zyy/zyy/Netease/nim/official_website_baseline/src/main/webapp/res/svg/base/dbArrow.svg",
@@ -155,6 +174,52 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"HOW YOU DOIN'?",
+			"main",
+			"flow",
+			"true",
+			"application/x-mpegurl",
+			"id",
+			"videojs-video",
+			"video-js",
+			"flowplayer",
+			"id",
+			"urls",
+			"url2",
+			"url1",
+			"url0",
+			"div id",
+			"player-",
+			"拉流地址",
+			"vjsplayer",
+			"videojs",
+			"player2",
+			"player1",
+			"player0",
+			"id",
+			"player3",
+			"type3",
+			"url3",
+			"player2",
+			"player1",
+			"player3",
+			"type1",
+			"url1",
+			"type2",
+			"url2",
+			"url3",
+			"url2",
+			"2",
+			"url2",
+			"var ",
+			"player1",
+			"<source src=\"http://v1.live.126.net/live/f605e6ac535f40bd90c976655cc0f7ef/playlist.m3u8\" type=\"application/x-mpegURL\">",
+			"src",
+			"width=\"640\" height=\"264\" ",
+			"<video",
+			"video",
+			"outer",
+			"inner",
 			"db",
 			"ddb",
 			"dbArrow",
@@ -465,7 +530,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 210.0,
+	"side_bar_width": 231.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

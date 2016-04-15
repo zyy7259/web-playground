@@ -32,13 +32,19 @@
     </head>
     <body>
         <script>
+            var url = location.href;
+            var autoplay = url.indexOf('autoplay') !== -1;
+
             var srcs = [
                 // RTMP
-                'rtmp://v1.live.126.net/live/f605e6ac535f40bd90c976655cc0f7ef',
+                // 'rtmp://v1.live.126.net/live/f605e6ac535f40bd90c976655cc0f7ef',
+                'rtmp://v1.live.126.net/live/5352061eec0a4c74ad5d8d8b90f51c59',
                 // HTTP
-                'http://v1.live.126.net/live/f605e6ac535f40bd90c976655cc0f7ef.flv',
+                // 'http://v1.live.126.net/live/f605e6ac535f40bd90c976655cc0f7ef.flv',
+                'http://v1.live.126.net/live/5352061eec0a4c74ad5d8d8b90f51c59.flv',
                 // HLS
-                'http://v1.live.126.net/live/f605e6ac535f40bd90c976655cc0f7ef/playlist.m3u8'
+                // 'http://v1.live.126.net/live/f605e6ac535f40bd90c976655cc0f7ef/playlist.m3u8'
+                'http://pullhls1.live.126.net/live/5352061eec0a4c74ad5d8d8b90f51c59/playlist.m3u8'
             ];
             var types = [
                 // RTMP
@@ -91,9 +97,16 @@
             var type2 = types[2];
             var videojsPlayer2 = window.videojsPlayer2 = videojs(videos[2]);
             videojsPlayer2.src({
-                src: src2,
-                type: type2
+                // src: src2,
+                // type: type2
+                src: "http://pullhls1.live.126.net/live/5352061eec0a4c74ad5d8d8b90f51c59/playlist.m3u8", type: "application/x-mpegURL"
             });
+            
+            if (autoplay) {
+                videojsPlayer0.play();
+                videojsPlayer1.play();
+                videojsPlayer2.play();
+            }
         </script>
 
         <h2>flowplayer</h2>
@@ -107,37 +120,42 @@
         <script src="/node_modules/flowplayer/dist/flowplayer.js"></script>
 
         <script>
-            var containers = document.querySelectorAll('#players-flowplayer .flowplayer');
-            var flowplayer0 = flowplayer(containers[0], {
-                clip: {
-                    sources: [
-                        {
-                            type: types[0],
-                            src: srcs[0]
-                        }
-                    ]
-                }
-            });
-            var flowplayer1 = flowplayer(containers[1], {
-                clip: {
-                    sources: [
-                        {
-                            type: types[1],
-                            src: srcs[1]
-                        }
-                    ]
-                }
-            });
-            var flowplayer2 = flowplayer(containers[2], {
-                clip: {
-                    sources: [
-                        {
-                            type: types[2],
-                            src: srcs[2]
-                        }
-                    ]
-                }
-            });
+            // var containers = document.querySelectorAll('#players-flowplayer .flowplayer');
+            // var flowplayer0 = flowplayer(containers[0], {
+            //     autoplay: autoplay,
+            //     clip: {
+            //         sources: [
+            //             {
+            //                 // type: types[0],
+            //                 type: 'video/flash',
+            //                 src: srcs[0]
+            //             }
+            //         ]
+            //     }
+            // });
+            // var flowplayer1 = flowplayer(containers[1], {
+            //     autoplay: autoplay,
+            //     clip: {
+            //         sources: [
+            //             {
+            //                 // type: types[1],
+            //                 type: 'video/flash',
+            //                 src: srcs[1]
+            //             }
+            //         ]
+            //     }
+            // });
+            // var flowplayer2 = flowplayer(containers[2], {
+            //     autoplay: autoplay,
+            //     clip: {
+            //         sources: [
+            //             {
+            //                 type: types[2],
+            //                 src: srcs[2]
+            //             }
+            //         ]
+            //     }
+            // });
         </script>
         
         <h2>jwplayer</h2>

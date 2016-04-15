@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+        body {
+            margin-top: 300px;
+        }
+        .main {
+            margin: 10px auto 0;
+            border: 1px solid silver;
+            width: 600px;
+            height: 40px;
+            font-size: 14px;
+            text-align: center;
+        }
+        img {
+            vertical-align: middle;
+        }
+        .main > * {
+            /*vertical-align: middle;*/
+        }
+        span {
+            /*background-color: rgba(0,0,0,0.1);*/
+            direction: rtl;
+            unicode-bidi: bidi-override;
+        }
+        .ib {
+            height: 14px;
+            display: inline-block;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <img src="https://avatars2.githubusercontent.com/u/2311742?v=3&s=40">
+            The quick brown fox jumps over the lazy dog
+            <span>The quick brown fox jumps over the lazy dog</span>
+        </div>
+        <div class="main">
+            <img src="https://avatars2.githubusercontent.com/u/2311742?v=3&s=40">
+            The quick brown fox jumps over the lazy dog
+            <span class="ib">The quick brown fox jumps over the lazy dog</span>
+        </div>
+        <div class="main">
+            <img src="https://avatars2.githubusercontent.com/u/2311742?v=3&s=40">
+            <span>The quick brown fox jumps over the lazy dog</span>
+        </div>
+    </body>
+</html>
