@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular - hello</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
+</head>
+<body>
+    <script src="/node_modules/regularjs/dist/regular.js"></script>
+
+    <script type="text/regular" id="tpl">
+        {#if username}
+            Hello, {username}
+        {#else}
+            Sorry, Guest.
+        {/if}
+    </script>
+
+    <script>
+        var HelloRegular = Regular.extend({
+            template: '#tpl'
+        });
+        var component0 = new HelloRegular();
+        component0.$inject(document.body);
+        var component1 = new HelloRegular({
+            data: {
+                username: 'zyy'
+            }
+        });
+        component1.$inject(document.body);
+    </script>
+</body>
+</html>

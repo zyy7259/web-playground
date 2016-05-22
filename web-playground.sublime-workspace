@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"开头的",
+				"开头的属性都会被作为"
+			],
+			[
 				"videojspl",
 				"videojsPlayer0"
 			],
@@ -74,17 +78,68 @@
 	"expanded_folders":
 	[
 		"/Users/zyy/zyy/web-playground",
-		"/Users/zyy/zyy/web-playground/css/center",
-		"/Users/zyy/zyy/web-playground/css/retina",
-		"/Users/zyy/zyy/web-playground/videojs",
-		"/Users/zyy/zyy/web-playground/videojs/video.js-5.8.0-src/dist"
+		"/Users/zyy/zyy/web-playground/regularjs",
+		"/Users/zyy/zyy/web-playground/regularjs/directive",
+		"/Users/zyy/zyy/web-playground/regularjs/doc",
+		"/Users/zyy/zyy/web-playground/regularjs/misc"
 	],
 	"file_history":
 	[
+		"/Users/zyy/zyy/web-playground/regularjs/misc/pager.html",
+		"/Users/zyy/zyy/web-playground/regularjs/doc/readme.md",
+		"/Users/zyy/zyy/web-playground/regularjs/doc/guide-component.md",
+		"/Users/zyy/zyy/web-playground/regularjs/doc/guide-event.md",
+		"/Users/zyy/zyy/web-playground/regularjs/directive/class.html",
+		"/Users/zyy/zyy/web-playground/webpack/example/gettingStarted/webpack.config.js",
+		"/Users/zyy/zyy/web-playground/js/promise/index.html",
+		"/Users/zyy/zyy/web-playground/bootstrap/template.html",
+		"/Users/zyy/zyy/web-playground/js/dom-scripting/index.js",
+		"/Users/zyy/zyy/web-playground/js/dom-scripting/index.html",
+		"/Users/zyy/zyy/web-playground/regularjs/doc/syntax-control.md",
+		"/Users/zyy/zyy/web-playground/stateman/index.html",
+		"/Users/zyy/zyy/web-playground/regularjs/misc/tabs.html",
+		"/Users/zyy/zyy/web-playground/css/table/percentage.html",
+		"/Users/zyy/zyy/web-playground/node_modules/stateman/.publish/example/layout.html",
+		"/Users/zyy/zyy/web-playground/node_modules/stateman/stateman.js",
+		"/Users/zyy/zyy/web-playground/regularjs/abc/hello0.html",
+		"/Users/zyy/zyy/web-playground/regularjs/doc/syntax-directive.md",
+		"/Users/zyy/zyy/web-playground/regularjs/doc/guide-animation.md",
+		"/Users/zyy/zyy/web-playground/regularjs/doc/guide-filter.md",
+		"/Users/zyy/zyy/web-playground/regularjs/doc/guide-computed.md",
+		"/Users/zyy/zyy/web-playground/regularjs/doc/syntax-expression.md",
+		"/Users/zyy/zyy/web-playground/regularjs/doc/syntax-enbeded-component.md",
+		"/Users/zyy/zyy/web-playground/regularjs/doc/syntax-component.md",
+		"/Users/zyy/zyy/web-playground/regularjs/doc/syntax-rule.md",
+		"/Users/zyy/zyy/web-playground/regularjs/abc/hello3.html",
+		"/Users/zyy/zyy/web-playground/regularjs/abc/hello1.html",
+		"/Users/zyy/zyy/web-playground/regularjs/abc/hello2.html",
+		"/Users/zyy/zyy/web-playground/css/center/largeChild.html",
+		"/Users/zyy/Library/Application Support/Sublime Text 3/Packages/User/FileHeader.sublime-settings",
+		"/Users/zyy/Library/Application Support/Sublime Text 3/Packages/FileHeader/FileHeader.sublime-settings",
+		"/Users/zyy/Library/Application Support/Sublime Text 3/Packages/User/zyy/FileHeader/body/HTML.tmpl",
+		"/Users/zyy/Downloads/HTML.tmpl",
+		"/Users/zyy/Library/Application Support/Sublime Text 3/Packages/FileHeader/template/body/HTML.tmpl",
+		"/Users/zyy/Library/Application Support/Sublime Text 3/Packages/FileHeader/template/header/HTML.tmpl",
+		"/Users/zyy/zyy/web-playground/regularjs/syntax/include.html",
+		"/Users/zyy/zyy/web-playground/regularjs/syntax/list.html",
+		"/Users/zyy/zyy/web-playground/videojs/video.js-5.8.0-src/src/js/error-display.js",
+		"/Users/zyy/zyy/web-playground/videojs/video.js-5.8.0-src/src/js/modal-dialog.js",
+		"/Users/zyy/zyy/web-playground/videojs/video.js-5.8.0-src/src/js/component.js",
+		"/Users/zyy/zyy/web-playground/videojs/video.js-5.8.0-src/src/js/video.js",
+		"/Users/zyy/zyy/web-playground/videojs/video.js-5.8.0-src/src/js/extend.js",
+		"/Users/zyy/Downloads/面试笔记.txt",
+		"/Users/zyy/zyy/web-playground/css/hover/beneath.html",
+		"/Users/zyy/zyy/web-playground/nej/nej/src/base/element.js",
+		"/Users/zyy/zyy/web-playground/nej/nej/src/base/platform/element.js",
+		"/Users/zyy/zyy/web-playground/nej/nej/src/base/platform/element.patch.js",
+		"/Users/zyy/zyy/web-playground/nej/nej/src/base/event.js",
+		"/Users/zyy/zyy/web-playground/videojs/index.html",
+		"/Users/zyy/zyy/web-playground/node_modules/xhr/index.js",
+		"/Users/zyy/Downloads/NIM_Web_Demo-master/app.js",
+		"/Users/zyy/zyy/web-playground/videojs/video.js-5.8.0-src/src/js/media-error.js",
 		"/Users/zyy/zyy/web-playground/css/center/horizontally.html",
 		"/Users/zyy/Downloads/NIM_Web_SDK_v2.1.0/js/Web_SDK_Base_v2.1.0.js",
 		"/Users/zyy/zyy/web-playground/videojs/readme.md",
-		"/Users/zyy/zyy/web-playground/videojs/index.html",
 		"/Users/zyy/zyy/web-playground/css/retina/background-size.html",
 		"/Users/zyy/zyy/web-playground/nej/nej/res/src/nej_proxy_upload.html",
 		"/Users/zyy/zyy/web-playground/js/beforeunload.html",
@@ -162,6 +217,9 @@
 		"height": 99.0,
 		"where_history":
 		[
+			"/Users/zyy/zyy/web-playground/regularjs",
+			"/Users/zyy/zyy/web-playground/regularjs/doc",
+			"/Users/zyy/zyy/web-playground/regularjs",
 			"/Users/zyy/zyy/Netease/nim/websdk/src",
 			"/Users/zyy/zyy/Netease/nim/websdk/src/protocol",
 			"/Users/zyy/zyy/Netease/nim/websdk/src",
@@ -174,6 +232,27 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"pager",
+			"on-enter",
+			".nav",
+			".go",
+			"list",
+			"/list",
+			"user/",
+			"config",
+			"fire",
+			"trigger",
+			"\n-",
+			"{#list",
+			"{list",
+			"headers",
+			"mpegURL",
+			"ErrorDisplay",
+			"Component",
+			"open",
+			"show",
+			"buildCSSClass",
+			"extend",
 			"HOW YOU DOIN'?",
 			"main",
 			"flow",
@@ -280,16 +359,7 @@
 			"inited",
 			"init",
 			"NIM.",
-			"protocol",
-			"IMMessage",
-			"notifyDisconnect",
-			"onAuthError",
-			"db",
-			"160px",
-			"onUpdateSession",
-			"db.updateSession",
-			"\\",
-			"shortHash"
+			"protocol"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -307,6 +377,21 @@
 	},
 	"groups":
 	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		},
 		{
 			"sheets":
 			[
@@ -330,16 +415,36 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			],
+			[
+				1,
+				1,
+				2,
+				2
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.952335557674,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
+			0.910091998691,
 			1.0
 		]
 	},
@@ -361,6 +466,22 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"statemanexamplelayou",
+				"node_modules/stateman/.publish/example/layout.html"
+			],
+			[
+				"stateman",
+				"node_modules/stateman/stateman.js"
+			],
+			[
+				"xhr",
+				"node_modules/xhr/index.js"
+			],
+			[
+				"xhrindex.js",
+				"node_modules/xhr/index.js"
+			],
 			[
 				"nejnejsrcajaxrest.js",
 				"nej/nej/src/util/ajax/rest.js"
