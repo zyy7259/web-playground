@@ -1,0 +1,38 @@
+<!--
+@Author: Yingya Zhang <zyy>
+@Date:   2016-07-09 14:23:00
+@Email:  zyy7259@gmail.com
+@Last modified by:   zyy
+@Last modified time: 2016-07-09 14:42:31
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>obj literal</title>
+</head>
+<body>
+  <script>
+    var foo = 'bar'
+
+    var sup = {
+      foo,
+      toString () {
+        return 'sup'
+      }
+    }
+
+    var sub = {
+      __proto__: sup,
+      toString () {
+        return 'sub of ' + super.toString()
+      },
+      ['prop_' + (() => 42)()]: 42
+    }
+
+    console.log(sub)
+    console.log(sub.toString())
+  </script>
+</body>
+</html>

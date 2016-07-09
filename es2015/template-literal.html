@@ -1,0 +1,43 @@
+<!--
+@Author: Yingya Zhang <zyy>
+@Date:   2016-07-09 14:44:00
+@Email:  zyy7259@gmail.com
+@Last modified by:   zyy
+@Last modified time: 2016-07-09 15:06:31
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>template literal</title>
+</head>
+<body>
+  <script>
+    var str = `this is a pretty simple string template`
+    console.log(str)
+
+    var multiline = `
+    In ES5 this is
+    not legal
+    `
+    console.log(multiline)
+
+    var name = 'Bob'
+    var time = 'Today'
+    var interpolation = `Hello ${name}, how are you ${time}?`
+    console.log(interpolation)
+
+    var tag = function (strings, ...values) {
+      console.log(strings)
+      console.log(values)
+      return 'bingo'
+    }
+    var tagged = tag`Hello ${name}`
+    console.log(tagged)
+
+    var raw = String.raw`Hello\nWorld`
+    console.log(raw, raw.length)
+  </script>
+</body>
+</html>

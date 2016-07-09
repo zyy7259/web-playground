@@ -1,0 +1,41 @@
+<!--
+@Author: Yingya Zhang <zyy>
+@Date:   2016-07-09 15:10:00
+@Email:  zyy7259@gmail.com
+@Last modified by:   zyy
+@Last modified time: 2016-07-09 15:18:64
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>destructuring</title>
+</head>
+<body>
+  <script>
+    // list matching, fail-soft, default
+    var [a, , c, d, e = 5] = [1, 2, 3]
+    console.log(a, c, d, e)
+
+    // object matching
+    var w, h
+    var {width: w, height : h} = {width: 10, height: 15, z: 1}
+    console.log(w, h)
+    // object matching shorthand
+    var {width, height, z} = {width: 10, height: 15}
+    console.log(width, height, z)
+
+    // parameter
+    function foo ({name}) {
+      console.log(name)
+    }
+    foo({name: 'bar'})
+
+    function r ({x, y, w = 10, h = 10}) {
+      console.log(x + y + w + h)
+    }
+    r({x: 1, y: 2})
+  </script>
+</body>
+</html>

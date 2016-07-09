@@ -1,0 +1,34 @@
+<!--
+@Author: Yingya Zhang <zyy>
+@Date:   2016-07-09 16:05:00
+@Email:  zyy7259@gmail.com
+@Last modified by:   zyy
+@Last modified time: 2016-07-09 16:20:01
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>generator</title>
+</head>
+<body>
+  <script>
+    const fibonacci = {
+      [Symbol.iterator]: function* () {
+        let pre = 0, cur = 1
+        for (;;) {
+          [pre, cur] = [cur, pre + cur]
+          yield cur
+        }
+      }
+    }
+    for (const n of fibonacci) {
+      if (n > 1000) {
+        break
+      }
+      console.log(n)
+    }
+  </script>
+</body>
+</html>

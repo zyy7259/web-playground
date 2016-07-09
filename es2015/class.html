@@ -1,0 +1,47 @@
+<!--
+@Author: Yingya Zhang <zyy>
+@Date:   2016-07-09 14:11:00
+@Email:  zyy7259@gmail.com
+@Last modified by:   zyy
+@Last modified time: 2016-07-09 14:19:79
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Class</title>
+</head>
+<body>
+  <script>
+    class Shape {
+      constructor (numberOfSides) {
+        console.log('constructing shape')
+        this.type = 'shape'
+        this.numberOfSides = numberOfSides || 0
+      }
+      printDescription () {
+        console.log(this.type + ' has ' + this.numberOfSides + ' sides')
+      }
+    }
+
+    class Square extends Shape {
+      constructor (sideLength) {
+        super(4)
+        console.log('constructing square')
+        this.type = 'square'
+        this.sideLength = sideLength || 0
+      }
+      printDescription () {
+        super.printDescription()
+        console.log('square sideLength ' + this.sideLength)
+      }
+      static defaultSquare () {
+        return new Square(42)
+      }
+    }
+    var square = Square.defaultSquare()
+    square.printDescription()
+  </script>
+</body>
+</html>

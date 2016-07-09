@@ -1,0 +1,28 @@
+<!--
+@Author: Yingya Zhang <zyy>
+@Date:   2016-07-09 16:50:00
+@Email:  zyy7259@gmail.com
+@Last modified by:   zyy
+@Last modified time: 2016-07-09 17:08:37
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Proxy</title>
+</head>
+<body>
+  <script>
+    const handler = {
+      get: (receiver, name) => {
+        return name in receiver ? receiver[name] : 42
+      }
+    }
+    const p = new Proxy({}, handler)
+    p.foo = 'bar'
+    console.log(p)
+    console.log(p.aaa)
+  </script>
+</body>
+</html>

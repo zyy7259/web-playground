@@ -1,0 +1,39 @@
+<!--
+@Author: Yingya Zhang <zyy>
+@Date:   2016-07-09 16:05:00
+@Email:  zyy7259@gmail.com
+@Last modified by:   zyy
+@Last modified time: 2016-07-09 16:50:33
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Set</title>
+</head>
+<body>
+  <script>
+    let set = new Set()
+    set.add('hello')
+      .add('world')
+      .add('hello')
+    console.log(set.has('hello'))
+    console.log(set.size, set)
+
+    var map = new Map()
+    map.set('hello', 42)
+      .set(set, 34)
+    console.log(map.get(set))
+    console.log(map.size, map)
+
+    var wm = new WeakMap()
+    wm.set(set, {extra: 42})
+    console.log(wm.size, wm)
+
+    var ws = new WeakSet()
+    ws.add({temp: 42})
+    console.log(ws.length, ws)
+  </script>
+</body>
+</html>

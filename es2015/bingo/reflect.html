@@ -1,0 +1,29 @@
+<!--
+@Author: Yingya Zhang <zyy>
+@Date:   2016-07-09 17:36:00
+@Email:  zyy7259@gmail.com
+@Last modified by:   zyy
+@Last modified time: 2016-07-09 17:42:04
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reflect</title>
+</head>
+<body>
+  <script>
+    let obj = {
+      a: 1
+    }
+    Object.defineProperty(obj, 'b', {
+      value: 2
+    })
+    obj[Symbol('c')] = 3
+    console.log(Reflect.ownKeys(obj))
+    console.log(Reflect.get(obj, 'b'))
+    console.log(Reflect.get(obj, 'c'))
+  </script>
+</body>
+</html>

@@ -33,6 +33,7 @@
     "jquery": "^2.2.2",
     "json-loader": "^0.5.4",
     "klass": "^1.4.1",
+    "moment": "^2.13.0",
     "regular-state": "0.0.1-beta.1",
     "requirejs": "^2.2.0",
     "stateman": "^0.2.0",

@@ -1,0 +1,33 @@
+<!--
+@Author: Yingya Zhang <zyy>
+@Date:   2016-07-09 15:49:00
+@Email:  zyy7259@gmail.com
+@Last modified by:   zyy
+@Last modified time: 2016-07-09 15:53:53
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>let const</title>
+</head>
+<body>
+  <script>
+    (() => {
+      let x
+      {
+        const x = 'sneaky'
+        // error, const
+        // x = 'foo'
+        console.log(x)
+      }
+      console.log(x)
+      x = 'bar'
+      // error, already declared
+      // let x = 'baz'
+      console.log(x)
+    })()
+  </script>
+</body>
+</html>

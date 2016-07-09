@@ -1,0 +1,33 @@
+<!--
+@Author: Yingya Zhang <zyy>
+@Date:   2016-07-09 15:46:00
+@Email:  zyy7259@gmail.com
+@Last modified by:   zyy
+@Last modified time: 2016-07-09 15:48:18
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>default rest spread</title>
+</head>
+<body>
+  <script>
+    function foo (x, y = 12) {
+      console.log(x + y)
+    }
+    foo(3)
+
+    function bar (x, ...y) {
+      console.log(x * y.length)
+    }
+    bar(3, 'hello', true)
+
+    function baz (x, y, z) {
+      console.log(x + y + z)
+    }
+    baz(...[1, 2, 3])
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!--
+@Author: Yingya Zhang <zyy>
+@Date:   2016-07-09 13:51:00
+@Email:  zyy7259@gmail.com
+@Last modified by:   zyy
+@Last modified time: 2016-07-09 14:09:66
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+</head>
+<body>
+  <script>
+    var evens = []
+    while (evens.length < 20) {
+      evens.push(evens.length * 2)
+    }
+
+    var odds = evens.map(v => v + 1)
+    console.log(odds)
+
+    var nums = evens.map((v, i) => v + i)
+    console.log(nums)
+
+    var fives = []
+    nums.forEach(v => {
+      if (v % 5 === 0) {
+        fives.push(v)
+      }
+    })
+    console.log(fives)
+
+    var bob = {
+      name: 'Bob',
+      friends: ['Apple', 'Boy', 'Cat'],
+      printFriends () {
+        this.friends.forEach(f => {
+          console.log(this.name + ' knows ' + f)
+        })
+      }
+    }
+    bob.printFriends()
+  </script>
+</body>
+</html>

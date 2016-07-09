@@ -10,6 +10,7 @@
 </head>
 <body>
     <script src="/node_modules/regularjs/dist/regular.js"></script>
+    <script src="/node_modules/moment/moment.js"></script>
 
     <script type="text/regular" id="tpl">
         <form>
@@ -48,26 +49,45 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
+            <div class="form-group">
+                {date}
+                <input type="date" r-model={date}>
+            </div>
+            <div class="form-group">
+                {time}
+                <input type="time" r-model={time}>
+            </div>
+            <div class="form-group">
+                {datetime}
+                <input type="datetime-local" r-model={datetime}>
+            </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
     </script>
 
     <script>
-        var Modal = Regular.extend({
+        var Model = Regular.extend({
             template: '#tpl'
         });
-        var app = new Modal().$inject(document.body);
-
-        app.$watch('email', function(value) {
-            if (value.indexOf('@') === -1) {
-                app.data.email = value + '@';
+        var app = new Model({
+            config: function () {
+                var data = this.data
+                var now = moment()
+                data.date = now.format('YYYY-MM-DD')
+                data.time = now.format('HH:mm:ss')
+                data.datetime = now.format('YYYY-MM-DDTHH:mm:ss')
+                this.$watch('email', function(value) {
+                    if (value.indexOf('@') === -1) {
+                        this.data.email = value + '@';
+                    }
+                });
+                this.$watch('select', function(value) {
+                    if (value == 2) {
+                        this.data.select = 4;
+                    }
+                });
             }
-        });
-        app.$watch('select', function(value) {
-            if (value == 2) {
-                app.data.select = 4;
-            }
-        });
+        }).$inject(document.body);
     </script>
 </body>
 </html>
