@@ -1,0 +1,53 @@
+<!--
+@Author: Yingya Zhang <zyy>
+@Date:   2016-07-11 09:43:00
+@Email:  zyy7259@gmail.com
+@Last modified by:   zyy
+@Last modified time: 2016-07-11 09:52:88
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>dynamic table cell</title>
+  <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
+  <style>
+    table {
+      width: 500px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    td:first-child {
+      width: 50%;
+      background-color: teal;
+    }
+    td:last-child {
+      width: 50%;
+      background-color: olive;
+    }
+    p {
+      margin: 0;
+      height: 0;
+      transition: 3s ease all;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          cell 1
+        </td>
+        <td>
+          cell 1
+          <p>
+            asdf
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
