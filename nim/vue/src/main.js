@@ -1,16 +1,9 @@
 import Vue from 'vue'
 import App from './App'
 
-/* eslint-disable no-new */
-new Vue({
-  el: 'body',
-  components: { App }
-})
-
-import '../../js/Web_SDK_Base_v2.7.0'
-
-var NIM = require('../../js/Web_SDK_NIM_v2.7.0')
-var Chatroom = require('../../js/Web_SDK_Chatroom_v2.7.0')
+require('../../js/Web_SDK_Base_v2.5.0')
+var NIM = require('../../js/Web_SDK_NIM_v2.5.0')
+var Chatroom = require('../../js/Web_SDK_Chatroom_v2.5.0')
 
 console.log(NIM.info)
 console.log(Chatroom.info)
@@ -22,3 +15,9 @@ var nim = window.nim = NIM.getInstance({
 })
 
 console.log(nim)
+
+/* eslint-disable no-new */
+new Vue({
+  el: 'body',
+  components: { App }
+})
