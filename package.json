@@ -46,6 +46,7 @@
     "video.js": "^5.8.6",
     "videojs-contrib-hls": "^1.3.11",
     "vue": "^1.0.20",
-    "webpack": "^1.12.14"
+    "webpack": "^1.12.14",
+    "yargs": "^4.8.1"
   }
 }
