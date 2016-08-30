@@ -1,0 +1,43 @@
+<!--
+@Author: Zhang Yingya(hzzhangyingya) <zyy>
+@Date:   2016-07-22T17:09:24+08:00
+@Email:  zyy7259@gmail.com
+@Last modified by:   zyy
+@Last modified time: 2016-07-22T17:11:12+08:00
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>rowspan</title>
+  <style>
+    table {
+      width: 100%;
+    }
+    .grid-1-5 {
+      width: 10%;
+      height: 100px;
+      border: 1px solid silver;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tbody>
+      <tr>
+        <td class="grid grid-1-5"></td>
+        <td class="grid grid-1-5"></td>
+        <td class="grid grid-1-5"></td>
+        <td class="grid grid-1-5" rowspan="2"></td>
+        <td class="grid grid-1-5" rowspan="2"></td>
+      </tr>
+        <tr>
+          <td class="grid grid-1-5"></td>
+          <td class="grid grid-1-5"></td>
+          <td class="grid grid-1-5"></td>
+        </tr>
+    </tbody>
+  </table>
+</body>
+</html>
