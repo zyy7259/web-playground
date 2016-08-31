@@ -73,7 +73,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + ".index.js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + ".chunk.js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -105,6 +105,10 @@
 
 	__webpack_require__(/*! bundle?lazy!./b */ 6)(function (b) {
 	  console.log(b)
+	})
+
+	__webpack_require__(/*! bundle!./c */ 7)(function (c) {
+	  console.log(c)
 	})
 
 
@@ -166,6 +170,28 @@
 			cb(__webpack_require__(/*! !./b.js */ 3));
 		});
 	}
+
+/***/ },
+/* 7 */
+/*!********************************************************************!*\
+  !*** /Users/zyy/zyy/web-lib/web-playground/~/bundle-loader!./c.js ***!
+  \********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var cbs = [], 
+		data;
+	module.exports = function(cb) {
+		if(cbs) cbs.push(cb);
+		else cb(data);
+	}
+	!/* require.ensure */(function(require) {
+		data = __webpack_require__(/*! !./c.js */ 4);
+		var callbacks = cbs;
+		cbs = null;
+		for(var i = 0, l = callbacks.length; i < l; i++) {
+			callbacks[i](data);
+		}
+	}(__webpack_require__));
 
 /***/ }
 /******/ ]);

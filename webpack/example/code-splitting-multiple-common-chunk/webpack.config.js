@@ -12,8 +12,9 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'js'),
-    filename: '[name].js',
     publicPath: 'js/',
+    filename: '[name].js',
+    chunkFilename: '[id].chunk.js',
     pathinfo: true
   },
   plugins: [

@@ -8,9 +8,10 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'js'),
-    filename: '[name].js',
     publicPath: 'js/',
-    chunkFilename: '[id].chunk.js'
+    filename: '[name].js',
+    chunkFilename: '[id].chunk.js',
+    pathinfo: true
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('commons.js')

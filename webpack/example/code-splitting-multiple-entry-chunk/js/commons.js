@@ -94,12 +94,18 @@
 /******/ ([
 /* 0 */,
 /* 1 */
+/*!********************!*\
+  !*** ./common1.js ***!
+  \********************/
 /***/ function(module, exports) {
 
 	module.exports = 'common1';
 
 /***/ },
 /* 2 */
+/*!********************!*\
+  !*** ./common2.js ***!
+  \********************/
 /***/ function(module, exports) {
 
 	module.exports = 'common2';
