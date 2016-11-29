@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta http-equiv='x-ua-compatible' content='ie=edge'>
+    <title>select</title>
+  </head>
+  <body>
+    <div id='app'>
+      <select multiple v-model="selected">
+        <option v-for="option in options" v-bind:value="option.value">
+          {{ option.text }}
+        </option>
+      </select>
+      <span>Selected: {{ selected }}</span>
+    </div>
+    <script src="/node_modules/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          selected: [],
+          options: [
+            { text: 'One', value: 'A' },
+            { text: 'Two', value: 'B' },
+            { text: 'Three', value: 'C' }
+          ]
+        },
+        watch: {
+          selected () {
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

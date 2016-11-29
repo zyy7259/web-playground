@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta http-equiv='x-ua-compatible' content='ie=edge'>
+    <title>velocity</title>
+    <style>
+      #app {
+        height: 10000px;
+        background: linear-gradient(red, orange, yellow, green, blue, indigo, violet);
+        opacity: .5;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='app'></div>
+    <script src='../node_modules/velocity-animate/velocity.js'></script>
+    <script>
+      var $app = document.getElementById('app')
+      document.body.scrollTop = $app.scrollHeight
+      Velocity($app, {
+        tween: [0, $app.scrollHeight]
+      }, {
+        duration: 10000,
+        progress: function(elements, complete, remaining, start, tweenValue) {
+          console.log((complete * 100) + "%");
+          console.log(remaining + "ms remaining!");
+          console.log("The current tween value is " + tweenValue)
+          document.body.scrollTop = tweenValue
+        }
+      });
+    </script>
+  </body>
+</html>

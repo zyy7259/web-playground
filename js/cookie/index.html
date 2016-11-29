@@ -4,16 +4,15 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
     <meta http-equiv='x-ua-compatible' content='ie=edge'>
-    <title>Page Title</title>
-    <style>
-      #app {
-        font-size: 20px;
-      }
-    </style>
+    <title>cookie</title>
   </head>
   <body>
-    <div id='app'>
-      The quick brown fox jumps over the lazy dog.
-    </div>
+    <div id='app'></div>
+    <script src='/node_modules/js-cookie/src/js.cookie.js'></script>
+    <script>
+      if (!Cookies.get('origin')) {
+        Cookies.set('origin', location.origin)
+      }
+    </script>
   </body>
 </html>

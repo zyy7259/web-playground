@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta http-equiv='x-ua-compatible' content='ie=edge'>
+    <title>wheel</title>
+    <!--[if IE 8]><script>window.ie8 = true</script><![endif]-->
+  </head>
+  <body>
+    <div id='banner'></div>
+    <div id='doc'>
+
+    </div>
+    <script src='/node_modules/lodash/lodash.js'></script>
+    <script>
+      if (window.ie8) {
+        window.attachEvent('onmousewheel', function (e) {
+          onWheelDelta(-e.wheelDelta)
+        })
+      } else {
+        window.addEventListener('wheel', function (e) {
+          onWheelDelta(e.deltaY)
+        })
+      }
+
+      function onWheelDelta (deltaY) {
+        if (deltaY > 0) {
+          // down
+          console.log('down')
+        }
+        if (deltaY < 0) {
+          // up
+          console.log('up')
+        }
+      }
+    </script>
+  </body>
+</html>
