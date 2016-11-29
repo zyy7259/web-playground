@@ -5,21 +5,24 @@
     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
     <meta http-equiv='x-ua-compatible' content='ie=edge'>
     <title>wheel</title>
-    <!--[if IE 8]><script>window.ie8 = true</script><![endif]-->
+    <style>
+      #doc {
+      }
+    </style>
+    <!--[if lte IE 8]><script>window.ie8 = true</script><![endif]-->
   </head>
   <body>
     <div id='banner'></div>
     <div id='doc'>
-
+      hello, world
     </div>
-    <script src='/node_modules/lodash/lodash.js'></script>
     <script>
       if (window.ie8) {
-        window.attachEvent('onmousewheel', function (e) {
+        document.attachEvent('onmousewheel', function (e) {
           onWheelDelta(-e.wheelDelta)
         })
       } else {
-        window.addEventListener('wheel', function (e) {
+        document.addEventListener('wheel', function (e) {
           onWheelDelta(e.deltaY)
         })
       }
