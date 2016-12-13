@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas</title>
+  <style>
+    canvas {
+      box-sizing: border-box;
+      border: 1px solid silver;
+    }
+  </style>
+</head>
+<body>
+  <canvas width=400 height=400></canvas>
+  <script>
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+    ctx.fillStyle = 'rgba(0, 0, 255, 0.5)'
+    ctx.fillRect(120, 80, 150, 150)
+  </script>
+</body>
+</html>

@@ -27,9 +27,32 @@
       triangleVertexPositionBuffer = gl.createBuffer()
       gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer)
       
+      var vertices = [
+        0.0, 1.0, 0.0,
+        -1.0, -1.0, 0.0,
+        1.0, -1.0, 0.0
+      ]
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW)
+      triangleVertexPositionBuffer.itemSize = 3
+      triangleVertexPositionBuffer.numItems = 3
+
+      squareVertexPositionBuffer = gl.createBuffer()
+      gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer)
+      vertices = [
+        1.0, 1.0, 0.0,
+        -1.0, 1.0, 0.0,
+        1.0, -1.0, 0.0,
+        -1.0, -1.0, 0.0
+      ]
+      g.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW)
+      squareVertexPositionBuffer.itemSize = 3
+      squareVertexPositionBuffer.numItems = 4
     }
 
-    function drawScene () {}
+    function drawScene () {
+      gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight)
+      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
+    }
 
     var canvas = document.getElementById('canvas')
     initGL(canvas)

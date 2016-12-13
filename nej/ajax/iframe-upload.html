@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta http-equiv='x-ua-compatible' content='ie=edge'>
+    <title>ajax iframe upload</title>
+  </head>
+  <body>
+    <div id='app'></div>
+    <form id="form">
+      <input type='file' class='form-control' name='file'>
+    </form>
+    <button type='button' id="btn">upload</button>
+    <script src='/node_modules/json3/lib/json3.js'></script>
+    <script src='/nej/nej/src/define.js'></script>
+    <script>
+      define([
+        'base/element',
+        'base/event',
+        'util/ajax/xdr'
+      ], function (e, v, xdr) {
+        var $form = e._$get('form')
+        var $btn = e._$get('btn')
+        v._$addEvent($btn, 'click', function () {
+          console.log('click')
+          $form.action = 'http://' + location.hostname + ':7259/upload'
+          xdr._$upload($form, {
+            mode: 2,
+            onload: function (obj) {
+              console.log(JSON.stringify(obj))
+            },
+            onerror: function (err) {
+              console.error(err)
+            }
+          })
+        })
+      })
+    </script>
+  </body>
+</html>

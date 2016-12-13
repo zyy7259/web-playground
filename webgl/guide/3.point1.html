@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>point</title>
+</head>
+<body>
+  <canvas width=400 height=400></canvas>
+  <script src='./lib/webgl-utils.js'></script>
+  <script src='./lib/webgl-debug.js'></script>
+  <script src='./lib/cuon-utils.js'></script>
+  <script>
+    const canvas = document.querySelector('canvas')
+    const gl = getWebGLContext(canvas)
+    // 着色器程序, GLSL ES 语言
+    // 顶点着色器程序, 指定了点的位置和尺寸
+    var VSHADER_SOURCE = `
+      void main() {
+        gl_Position = vec4(0.5, 0.5, 0.0, 1.0);
+        gl_PointSize = 10.0;
+      }
+    `
+    // 片元着色器程序, 指定了点的颜色
+    var FSHADER_SOURCE = `
+      void main () {
+        gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
+      }
+    `
+    // 初始化着色器
+    initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)
+    // 设置背景色
+    gl.clearColor(0.0, 0.0, 0.0, 1.0)
+    // 清空 canvas
+    gl.clear(gl.COLOR_BUFFER_BIT)
+    // 绘制一个点
+    // 当程序调用 drawArrays 时, 顶点着色器会被执行 count 次, 每次处理一个顶点.
+    // 在顶点着色器执行的时候, 会调用其 main 函数, 赋值给 gl_Position 和 gl_PointSize
+    // 当顶点着色器执行完成后, 片元着色器就会开始执行, 调用其 main 函数, 赋值给 gl_FragColor
+    // 最后一个点就被绘制出来了
+    gl.drawArrays(gl.POINTS, 0, 1)
+  </script>
+</body>
+</html>

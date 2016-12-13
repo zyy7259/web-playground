@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta http-equiv='x-ua-compatible' content='ie=edge'>
+    <title>ajax iframe</title>
+  </head>
+  <body>
+    <div id='app'></div>
+    <script src='/nej/nej/src/define.js'></script>
+    <script>
+      define([
+        'util/ajax/xdr'
+      ], function (xdr) {
+        xdr._$request('https://' + location.hostname + ':9527/json', {
+          mode: 2,
+          onload: function (obj) {
+            console.log(obj)
+          },
+          onerror: function (err) {
+            console.error(err)
+          }
+        })
+      })
+    </script>
+  </body>
+</html>
