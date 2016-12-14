@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta http-equiv='x-ua-compatible' content='ie=edge'>
+    <title>clicked point</title>
+  </head>
+  <body>
+    <canvas width=400 height=400></canvas>
+    <script src='./lib/webgl-utils.js'></script>
+    <script src='./lib/webgl-debug.js'></script>
+    <script src='./lib/cuon-utils.js'></script>
+    <script>
+      const canvas = document.querySelector('canvas')
+      const gl = getWebGLContext(canvas)
+      // 顶点着色器
+      var VSHADER_SOURCE = `
+        attribute vec4 a_Position;
+        void main () {
+          gl_Position = a_Position;
+          gl_PointSize = 10.0;
+        }
+      `
+      // 片元着色器
+      var FSHADER_SOURCE = `
+        void main () {
+          gl_FragColor = vec4(0.0, 1.0, 0.0, 0.5);
+        }
+      `
+      // 设置背景色
+      gl.clearColor(0.0, 0.0, 0.0, 1.0)
+      // 清除
+      gl.clear(gl.COLOR_BUFFER_BIT)
+      // 初始化着色器
+      initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)
+      // 获取 attribute 变量的存储位置
+      var a_Position = gl.getAttribLocation(gl.program, 'a_Position')
+      var g_points = []
+      canvas.onmousedown = function (e) {
+        var x = e.clientX
+        var y = e.clientY
+        var rect = e.target.getBoundingClientRect()
+        x = ((x - rect.left) - canvas.width / 2) / (canvas.width / 2)
+        y = (canvas.height / 2 - (y - rect.top)) / (canvas.height / 2)
+        // 存储点
+        g_points.push([x, y])
+        gl.clear(gl.COLOR_BUFFER_BIT)
+        for (var i = 0, l = g_points.length; i < l; i++) {
+          var xy = g_points[i]
+          // 将点的位置传输到 a_Position 变量中
+          gl.vertexAttrib3f(a_Position, xy[0], xy[1], 0.0)
+          // 绘制点
+          gl.drawArrays(gl.POINTS, 0, 1)
+        }
+      }
+    </script>
+  </body>
+</html>
