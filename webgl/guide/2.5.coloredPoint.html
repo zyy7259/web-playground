@@ -30,10 +30,6 @@
           gl_FragColor = u_FragColor;
         }
       `
-      // 设置背景色
-      gl.clearColor(0.0, 0.0, 0.0, 1.0)
-      // 清除
-      gl.clear(gl.COLOR_BUFFER_BIT)
       // 初始化着色器
       initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)
       // 获取 a_Position 变量的存储位置
@@ -70,6 +66,10 @@
           gl.drawArrays(gl.POINTS, 0, 1)
         }
       }
+      // 设置背景色
+      gl.clearColor(0.0, 0.0, 0.0, 1.0)
+      // 清空 canvas
+      gl.clear(gl.COLOR_BUFFER_BIT)
     </script>
   </body>
 </html>

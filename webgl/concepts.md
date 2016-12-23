@@ -6,6 +6,13 @@
 - 深度缓冲区 第七章
 - 模板缓冲区 不涉及
 
+使用缓冲区可以一次性将多个顶点传入着色器
+1.创建缓冲区对象 gl.createBuffer()
+2.绑定缓冲区对象 gl.bindBuffer(target, buffer), target 表示缓冲区对象的用途
+3.将数据写入缓冲区对象 gl.bufferData(target, data, usage), 将数据写入绑定在 target 的缓冲区
+4.将缓冲区对象分配给一个 attribute 变量 gl.vertexAttribPointer(attribute, size, type , normalized, stride, offset)
+5.开启 attribute 变量 gl.enableVertexAttribArray(attribute)
+
 ## 清空缓冲区
 
 gl.clear(buffer) 清空颜色缓冲区 (color buffer) 将会清空绘图区域
