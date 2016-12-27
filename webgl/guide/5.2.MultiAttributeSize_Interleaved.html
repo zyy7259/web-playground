@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
     <meta http-equiv='x-ua-compatible' content='ie=edge'>
-    <title>multi point</title>
+    <title>multi attribute size interleaved</title>
   </head>
   <body>
     <canvas width=400 height=400></canvas>
@@ -17,9 +17,10 @@
       // 顶点着色器
       var VSHADER_SOURCE = `
         attribute vec4 a_Position;
+        attribute float a_PointSize;
         void main () {
           gl_Position = a_Position;
-          gl_PointSize = 10.0;
+          gl_PointSize = a_PointSize;
         }
       `
       // 片元着色器
@@ -30,22 +31,28 @@
       `
       // 初始化着色器
       initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)
-      // 初始化顶点坐标
-      var vertices = new Float32Array([
-        0.0, 0.5, -0.5, -0.5, 0.5, -0.5
+      // 初始化数据
+      var verticesSizes = new Float32Array([
+        0.0, 0.5, 10.0,
+        -0.5, -0.5, 20.0,
+        0.5, -0.5, 30.0
       ])
       // 创建缓冲区对象
-      var vertexBuffer = gl.createBuffer()
+      var vertexSizeBuffer = gl.createBuffer()
       // 绑定缓冲区对象
-      gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer)
+      gl.bindBuffer(gl.ARRAY_BUFFER, vertexSizeBuffer)
       // 将数据写入缓冲区对象
-      gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW)
+      gl.bufferData(gl.ARRAY_BUFFER, verticesSizes, gl.STATIC_DRAW)
       // 获取 attribute 变量的位置
       var a_Position = gl.getAttribLocation(gl.program, 'a_Position')
+      var a_PointSize = gl.getAttribLocation(gl.program, 'a_PointSize')
+      var FSIZE = verticesSizes.BYTES_PER_ELEMENT
       // 将缓冲区对象分配给 attribute 变量
-      gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0)
+      gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, FSIZE * 3, 0)
+      gl.vertexAttribPointer(a_PointSize, 1, gl.FLOAT, false, FSIZE * 3, FSIZE * 2)
       // 开启 attribute 变量
       gl.enableVertexAttribArray(a_Position)
+      gl.enableVertexAttribArray(a_PointSize)
       // 设置背景色
       gl.clearColor(0.0, 0.0, 0.0, 1.0)
       // 清空 canvas

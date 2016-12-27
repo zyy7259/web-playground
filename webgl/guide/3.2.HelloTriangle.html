@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
     <meta http-equiv='x-ua-compatible' content='ie=edge'>
-    <title>multi point</title>
+    <title>hello triangle</title>
   </head>
   <body>
     <canvas width=400 height=400></canvas>
@@ -19,7 +19,7 @@
         attribute vec4 a_Position;
         void main () {
           gl_Position = a_Position;
-          gl_PointSize = 10.0;
+          // gl_PointSize = 10.0;
         }
       `
       // 片元着色器
@@ -51,7 +51,8 @@
       // 清空 canvas
       gl.clear(gl.COLOR_BUFFER_BIT)
       // 绘制
-      gl.drawArrays(gl.POINTS, 0, 3)
+      gl.drawArrays(gl.TRIANGLES, 0, 3)
+      // gl.drawArrays(gl.LINE_STRIP, 0, 3)
     </script>
   </body>
 </html>

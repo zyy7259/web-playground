@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
     <meta http-equiv='x-ua-compatible' content='ie=edge'>
-    <title>multi point</title>
+    <title>multi attribute size</title>
   </head>
   <body>
     <canvas width=400 height=400></canvas>
@@ -17,9 +17,10 @@
       // 顶点着色器
       var VSHADER_SOURCE = `
         attribute vec4 a_Position;
+        attribute float a_PointSize;
         void main () {
           gl_Position = a_Position;
-          gl_PointSize = 10.0;
+          gl_PointSize = a_PointSize;
         }
       `
       // 片元着色器
@@ -46,6 +47,16 @@
       gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0)
       // 开启 attribute 变量
       gl.enableVertexAttribArray(a_Position)
+      // 尺寸
+      var sizes = new Float32Array([
+        10.0, 20.0, 30.0
+      ])
+      var sizeBuffer = gl.createBuffer()
+      gl.bindBuffer(gl.ARRAY_BUFFER, sizeBuffer)
+      gl.bufferData(gl.ARRAY_BUFFER, sizes, gl.STATIC_DRAW)
+      var a_PointSize = gl.getAttribLocation(gl.program, 'a_PointSize')
+      gl.vertexAttribPointer(a_PointSize, 1, gl.FLOAT, false, 0, 0)
+      gl.enableVertexAttribArray(a_PointSize)
       // 设置背景色
       gl.clearColor(0.0, 0.0, 0.0, 1.0)
       // 清空 canvas
