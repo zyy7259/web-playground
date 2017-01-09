@@ -8,9 +8,9 @@
   </head>
   <body>
     <canvas width=400 height=400></canvas>
-    <script src='./lib/webgl-utils.js'></script>
-    <script src='./lib/webgl-debug.js'></script>
-    <script src='./lib/cuon-utils.js'></script>
+    <script src='../lib/webgl-utils.js'></script>
+    <script src='../lib/webgl-debug.js'></script>
+    <script src='../lib/cuon-utils.js'></script>
     <script>
       var canvas = document.querySelector('canvas')
       var gl = getWebGLContext(canvas)
@@ -43,9 +43,9 @@
         0.5, -0.5, 1.0, 0.0
       ])
       // 创建缓冲区对象
-      var vertexBuffer = gl.createBuffer()
+      var vertexTexCoordBuffer = gl.createBuffer()
       // 绑定缓冲区对象
-      gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer)
+      gl.bindBuffer(gl.ARRAY_BUFFER, vertexTexCoordBuffer)
       // 将数据写入缓冲区对象
       gl.bufferData(gl.ARRAY_BUFFER, verticesTexCoords, gl.STATIC_DRAW)
       // 获取 attribute 变量的位置
@@ -66,7 +66,7 @@
       image.onload = function () {
         loadTexture(texture, u_Sampler, image)
       }
-      image.src = './resources/sky.jpg'
+      image.src = '../resources/sky.jpg'
       function loadTexture (texture, u_Sampler, image) {
         // 对图像进行 y 轴反转
         gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1)

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta http-equiv='x-ua-compatible' content='ie=edge'>
+    <title>唤起阿里旺旺</title>
+    <style>
+      #app {
+        display: flex;
+        justify-content: center;
+        margin-top: 100px;
+      }
+      .btn {
+        padding: 20px;
+      }
+      iframe {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='app'>
+      <button type='button' class='btn'>唤起阿里旺旺</button>
+    </div>
+    <script>
+      var src = 'aliim:sendmsg?&touid=cntaobao%E6%AD%A6%E6%B1%89%E7%B2%BE%E6%AD%A6%E9%B8%AD%E8%84%96%E5%BA%97:%E5%B0%8F%E7%81%B0&siteid=cntaobao&status=2&portalId=&gid=530895075094&itemsId='
+      var btn = document.querySelector('.btn')
+      btn.addEventListener('click', function () {
+        var iframe = document.createElement("iframe")
+        iframe.src = src
+        document.body.appendChild(iframe)
+        setTimeout(function() {
+          // iframe.parentNode.removeChild(iframe)
+        }, 500)
+      })
+    </script>
+  </body>
+</html>

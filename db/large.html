@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta http-equiv='x-ua-compatible' content='ie=edge'>
+    <title>large number of records</title>
+  </head>
+  <body>
+    <div id='app'></div>
+    <script src='./db.js'></script>
+    <script>
+      var dbName = 'db-large'
+      var tableMsg = 'msg1'
+      var data = {}
+      data.msgs = []
+      var i = 10000
+      while (i) {
+        data.msgs.push({
+          cc: true,
+          flow: "out",
+          from: "zyy13",
+          fromClientType: "Web",
+          fromDeviceId: "e21d1b4e3c38b8e321f8a431fca2b730",
+          fromNick: "张迎亚13",
+          idClient: "idClient" + i,
+          isHistoryable: true,
+          isLocal: false,
+          isOfflinable: true,
+          isPushable: true,
+          isRoamingable: true,
+          isSyncable: true,
+          isUnreadable: true,
+          needPushNick: true,
+          resend: false,
+          scene: "p2p",
+          sessionId: "p2p-zyy2",
+          status: "fail",
+          target: "zyy2",
+          text: i,
+          time: +new Date() + i * 1000,
+          to: "zyy2",
+          type: "text",
+          userUpdateTime: 1440494039161
+        })
+        i--
+      }
+      db.open({
+        server: dbName,
+        version: 4,
+        schema: {
+          msg: {
+            key: {
+              // autoIncrement: true
+              keyPath: 'idClient'
+            },
+            indexes: {
+              // idClient: { unique: true },
+              sessionId: { unique: false },
+              time: { unique: false },
+              type: { unique: false },
+              sessionType: { unique: false },
+              status: { unique: false },
+              sessionTime: {
+                key: ['sessionId', 'time'],
+                unique: false
+              }
+            }
+          },
+          msg1: {
+              key: {
+                  keyPath: 'idClient'
+              },
+              indexes: {
+                  sessionId: { unique: false },
+                  time: { unique: false },
+                  status: { unique: false },
+                  sessionTime: {
+                    key: ['sessionId', 'time'],
+                    unique: false
+                  }
+              }
+          },
+        }
+      }).then(function (server) {
+        data.server = server
+        console.log('opened')
+        data.startDate = new Date()
+        // 一次一条, 一万次
+        // var arr = []
+        // var p
+        // data.msgs.forEach(function (msg) {
+        //   p = server.update(tableMsg, msg)
+        //   arr.push(p)
+        // })
+        // return Promise.all(arr)
+        // 一次一万条
+        return data.server.update(tableMsg, data.msgs)
+      }).then(function () {
+        data.endDate = new Date()
+        console.log(data.endDate - data.startDate)
+      }).catch(function (error) {
+        console.error(error)
+      })
+      function reset () {
+        db.remove(dbName)
+      }
+    </script>
+  </body>
+</html>
