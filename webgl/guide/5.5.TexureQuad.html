@@ -7,13 +7,15 @@
     <title>texure quad</title>
   </head>
   <body>
-    <canvas width=400 height=400></canvas>
+    <canvas width=512 height=256></canvas>
     <script src='../lib/webgl-utils.js'></script>
     <script src='../lib/webgl-debug.js'></script>
     <script src='../lib/cuon-utils.js'></script>
     <script>
       var canvas = document.querySelector('canvas')
       var gl = getWebGLContext(canvas)
+      // 设置背景色
+      gl.clearColor(0.0, 0.0, 0.0, 1.0)
       // 顶点着色器
       var VSHADER_SOURCE = `
         attribute vec4 a_Position;
@@ -66,7 +68,7 @@
       image.onload = function () {
         loadTexture(texture, u_Sampler, image)
       }
-      image.src = '../resources/sky.jpg'
+      image.src = '../resources/lena-512-256.jpg'
       function loadTexture (texture, u_Sampler, image) {
         // 对图像进行 y 轴反转
         gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1)
@@ -80,13 +82,11 @@
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image)
         // 将 0 号纹理传递给着色器
         gl.uniform1i(u_Sampler, 0)
+        // 清空 canvas
+        gl.clear(gl.COLOR_BUFFER_BIT)
         // 绘制
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
       }
-      // 设置背景色
-      gl.clearColor(0.0, 0.0, 0.0, 1.0)
-      // 清空 canvas
-      gl.clear(gl.COLOR_BUFFER_BIT)
     </script>
   </body>
 </html>
