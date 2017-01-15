@@ -16,8 +16,6 @@
   </head>
   <body>
     <div id='app'>
-      <button type='button' class='btn'>next frame</button>
-      <img src='' alt='' class='img'>
     </div>
     <script src='../lib/webgl-utils.js'></script>
     <script src='../lib/webgl-debug.js'></script>
@@ -56,11 +54,12 @@
       var ctx = {}
 
       function initCanvas (options) {
-        // 初始化 webgl
+        // 初始化 canvas
         var canvas = window.canvas = document.createElement('canvas')
         canvas.width = ctx.width = options.width
         canvas.height = ctx.height = options.height
         document.body.appendChild(canvas)
+        // 初始化 webgl
         var gl = window.gl = getWebGLContext(canvas)
         // 顶点坐标和纹理坐标
         initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)
@@ -157,10 +156,10 @@
       function drawImage (arrayBuffer) {
         window.yuv = arrayBuffer
         // slice yuv 数据
-        // var width = 640
-        // var height = 480
-        var width = 512
-        var height = 256
+        var width = 640
+        var height = 480
+        // var width = 512
+        // var height = 256
         var yLength = width * height
         var uLength = yLength / 4
         var vLength = yLength / 4
@@ -176,29 +175,99 @@
           v: new Uint8Array(arrayBuffer, yLength + uLength)
         })
       }
-      // 初始化 socket
-      var url = 'ws://10.240.76.29:23432/'
-      var socket = new WebSocket(url)
-      socket.binaryType = 'arraybuffer'
-      socket.onopen = function (event) {
-        console.log('socket open', event)
+
+      function send (socket, data) {
+        socket.send(JSON.stringify(data))
       }
-      socket.onclose = function (event) {
-        console.log('socket close', event)
+
+      var cmdUrl = 'ws://10.240.76.61:30000/'
+      var cmdSocket = new WebSocket(cmdUrl)
+      cmdSocket.onopen = function (event) {
+        console.log('cmd socket open', event)
+        send(cmdSocket, {
+          cmd_type: "on_get_devices",
+          cmd_info: {
+            type: 3
+          }
+        })
       }
-      socket.onmessage = function (event) {
-        console.log('socket msg', event)
-        var data = event.data
-        if (data instanceof ArrayBuffer) {
-          drawImage(data)
+      cmdSocket.onclose = function (event) {
+        console.log('cmd socket close', event, new Date())
+      }
+      cmdSocket.onmessage = function (event) {
+        const obj = JSON.parse(event.data)
+        console.log('cmd msg', obj)
+        switch (obj.cmd_type) {
+          case 'device_list_notify':
+            onDevices(obj.cmd_info.devices || [])
+            break
+          default:
+            break
         }
       }
-      // 初始化按钮
-      var count = 0
-      var btn = document.querySelector('.btn')
-      btn.addEventListener('click', function () {
-        socket.send(count)
-      })
+
+      function onDevices (devices) {
+        if (devices.length > 1) {
+          devices.sort((d1, d2) => {
+            const virtualName1 = d1.name.toLowerCase().indexOf('virtual') !== -1
+            const virtualPath1 = d1.path.toLowerCase().indexOf('virtual') !== -1
+            const virtualName2 = d2.name.toLowerCase().indexOf('virtual') !== -1
+            const virtualPath2 = d2.path.toLowerCase().indexOf('virtual') !== -1
+            if (virtualPath1) {
+              return 1
+            }
+            if (virtualPath2) {
+              return -1
+            }
+            if (virtualName1 && virtualName2) {
+              return 0
+            }
+            if (virtualName1) {
+              return 1
+            }
+            if (virtualName2) {
+              return -1
+            }
+            return 0
+          })
+        }
+        console.log('got devices', devices)
+        if (devices.length) {
+          startDevice(devices[0])
+        }
+      }
+
+      function startDevice (device) {
+        send(cmdSocket, {
+          cmd_type: 'on_start_device',
+          cmd_info: {
+            type: 3,
+            path: device.path
+          }
+        })
+      }
+
+      var streamUrl = 'ws://10.240.76.61:40000/'
+      var streamSocket = new WebSocket(streamUrl)
+      streamSocket.onopen = function (event) {
+        console.log('stream socket open', event)
+      }
+      streamSocket.onclose = function (event) {
+        console.log('stream socket close', event, new Date())
+      }
+      streamSocket.binaryType = 'arraybuffer'
+      var flag = true
+      streamSocket.onmessage = function (event) {
+        if (flag) {
+          // flag = false
+          var data = event.data
+          if (data instanceof ArrayBuffer) {
+            setTimeout(() => {
+              drawImage(data)
+            })
+          }
+        }
+      }
     </script>
   </body>
 </html>

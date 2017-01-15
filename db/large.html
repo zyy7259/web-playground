@@ -14,7 +14,7 @@
       var tableMsg = 'msg1'
       var data = {}
       data.msgs = []
-      var i = 10000
+      var i = 100
       while (i) {
         data.msgs.push({
           cc: true,
@@ -47,26 +47,8 @@
       }
       db.open({
         server: dbName,
-        version: 4,
+        version: 1,
         schema: {
-          msg: {
-            key: {
-              // autoIncrement: true
-              keyPath: 'idClient'
-            },
-            indexes: {
-              // idClient: { unique: true },
-              sessionId: { unique: false },
-              time: { unique: false },
-              type: { unique: false },
-              sessionType: { unique: false },
-              status: { unique: false },
-              sessionTime: {
-                key: ['sessionId', 'time'],
-                unique: false
-              }
-            }
-          },
           msg1: {
               key: {
                   keyPath: 'idClient'
@@ -86,15 +68,16 @@
         data.server = server
         console.log('opened')
         data.startDate = new Date()
-        // 一次一条, 一万次
+        // 一次一条
         // var arr = []
         // var p
         // data.msgs.forEach(function (msg) {
         //   p = server.update(tableMsg, msg)
         //   arr.push(p)
         // })
+        // console.log(arr.length)
         // return Promise.all(arr)
-        // 一次一万条
+        // 一次全量
         return data.server.update(tableMsg, data.msgs)
       }).then(function () {
         data.endDate = new Date()
