@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.5">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+<script>
+!(function(a) {
+  let b = a.document,
+    c = navigator.userAgent.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),
+    d = navigator.appVersion.match(/iphone|ipad/gi),
+    e = a.devicePixelRatio || 1,
+    f = b.documentElement,
+    g = '',
+    h = 1,
+    i = 1 / e;
+  if (d);
+  else if (c && c[1] > 534) {
+    g += 'target-densitydpi=device-dpi,';
+    const j = b.createElement('div');
+    j.setAttribute('style', 'width: 1rem;display:none'), f.appendChild(j);
+    const k = a.getComputedStyle(j).width;
+    if ((f.removeChild(j), k !== '100px')) {
+      const l = parseInt(k);
+      (h = 100 / l), (i *= h);
+    }
+  } else i = 1;
+  b
+    .querySelector('meta[name="viewport"]')
+    .setAttribute(
+      'content',
+      `${g}width=device-width,user-scalable=no,initial-scale=${i},maximum-scale=${i},minimum-scale=${i}`,
+    ), (f.style.fontSize = `${0.1333333333 *
+    f.clientWidth *
+    h}px`), a.addEventListener('resize', () => {
+    f.style.fontSize = `${0.1333333333 * f.clientWidth * h}px`;
+  });
+})(window);
+</script>
+<style>
+  html, body {
+    padding: 0;
+    margin: 0;
+  }
+  div {
+    font-size: .32rem;
+    margin: .32rem;
+    border: 1px solid teal;
+  }
+</style>
+</head>
+<body>
+<div>
+  测试rem
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://a.alipayobjects.com/g/antui/antui/10.0.12/rem/antui.css">
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+    }
+    div {
+      font-size: .16rem;
+      margin: .16rem;
+      border: 1px solid teal;
+    }
+  </style>
+</head>
+<body>
+  <div id='app'>
+    测试rem
+  </div>
+<script>
+console.log(document.querySelector('meta[name=viewport]').content);
+console.log(getComputedStyle(document.querySelector('#app')).fontSize);
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+  html, body {
+    padding: 0;
+    margin: 0;
+  }
+  div {
+    font-size: 16px;
+    margin: 16px;
+    border: 1px solid teal;
+  }
+</style>
+</head>
+<body>
+  <div id='app'>
+    测试rem
+  </div>
+<script>
+console.log(document.querySelector('meta[name=viewport]').content);
+console.log(getComputedStyle(document.querySelector('#app')).fontSize);
+</script>
+</body>
+</html>

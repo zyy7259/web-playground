@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>点击按钮调出actionSheet</h1>
+  <a href="javascript:void(0)" class="actionSheet">打开actionSheet</a>
+  <script src="https://as.alipayobjects.com/g/component/antbridge/1.1.1/antbridge.min.js"></script>
+  <script>
+  document.querySelector('.actionSheet').addEventListener('click', function() {
+  ant.actionSheet(
+    {
+      title: '标题',
+      btns: ['第一个按钮', '第二个按钮', '第三个按钮'],
+      destructiveBtnIndex: 2,
+    },
+    function(data) {
+      switch (data.index) { // index标示用户点击的按钮，在actionSheet中的位置，从0开始
+        case 0:
+          alert('第一个按钮');
+          break;
+        case 1:
+          alert('第二个按钮');
+          break;
+        case 2:
+          alert('第三个按钮');
+          break;
+        case 3:
+          alert('取消按钮');
+          break;
+      }
+    }
+  );
+});
+</script>
+</body>
+</html>
