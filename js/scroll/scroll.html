@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>scroll</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .app {
+      height: 3000px;
+      background-image: linear-gradient(180deg, teal, silver);
+    }
+    .scrollY {
+      position: fixed;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class='app'>
+    <div class='scrollY'></div>
+  </div>
+<script>
+const $scrollY = document.querySelector('.scrollY');
+window.addEventListener('scroll', e => {
+  console.log(window.scrollY);
+  $scrollY.innerHTML = window.scrollY;
+});
+</script>
+</body>
+</html>
