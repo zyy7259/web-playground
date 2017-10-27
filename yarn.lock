@@ -1921,13 +1921,6 @@ csso@~2.3.1:
     clap "^1.0.9"
     source-map "^0.5.3"
 
-csv-loader@^2.1.1:
-  version "2.1.1"
-  resolved "http://registry.npm.alibaba-inc.com/csv-loader/download/csv-loader-2.1.1.tgz#f71d46080cc8cbc0b4170720e2992f2f1e2d7c46"
-  dependencies:
-    loader-utils "^1.1.0"
-    papaparse "^4.2.0"
-
 currently-unhandled@^0.4.1:
   version "0.4.1"
   resolved "http://registry.npm.alibaba-inc.com/currently-unhandled/download/currently-unhandled-0.4.1.tgz#988df33feab191ef799a61369dd76c17adf957ea"
@@ -2400,9 +2393,9 @@ eslint-config-prettier@2.*:
   dependencies:
     get-stdin "^5.0.1"
 
-eslint-config-zoro-base@^0.1.59:
-  version "0.1.59"
-  resolved "http://registry.npm.alibaba-inc.com/eslint-config-zoro-base/download/eslint-config-zoro-base-0.1.59.tgz#e04a9fce457a721853f9dd6d304d0c936a7dc0ac"
+eslint-config-zoro-base@^0.1.62:
+  version "0.1.62"
+  resolved "http://registry.npm.alibaba-inc.com/eslint-config-zoro-base/download/eslint-config-zoro-base-0.1.62.tgz#d4b0aacbb109c4629c64c4a42f65bc31c43aeb3f"
   dependencies:
     babel-eslint "7.*"
     eslint "4.*"
@@ -2411,11 +2404,11 @@ eslint-config-zoro-base@^0.1.59:
     eslint-plugin-import "2.*"
     prettier-eslint-cli "4.*"
 
-eslint-config-zoro-vue@^0.1.59:
-  version "0.1.59"
-  resolved "http://registry.npm.alibaba-inc.com/eslint-config-zoro-vue/download/eslint-config-zoro-vue-0.1.59.tgz#88ca66e51d5282cafdf30a5a0ab231f88c4319b5"
+eslint-config-zoro-vue@^0.1.62:
+  version "0.1.62"
+  resolved "http://registry.npm.alibaba-inc.com/eslint-config-zoro-vue/download/eslint-config-zoro-vue-0.1.62.tgz#b48bc8ceab5fa71df1d35e3e8b85c3e1bf158a7c"
   dependencies:
-    eslint-config-zoro-base "^0.1.59"
+    eslint-config-zoro-base "^0.1.62"
     eslint-plugin-vue "3.*"
 
 eslint-import-resolver-node@^0.3.1:
@@ -3680,6 +3673,10 @@ isarray@1.0.0, isarray@^1.0.0, isarray@~1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.alibaba-inc.com/isarray/download/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
 
+iscroll@^5.2.0:
+  version "5.2.0"
+  resolved "http://registry.npm.alibaba-inc.com/iscroll/download/iscroll-5.2.0.tgz#d513307088b5b25a4f893af474804468481829c8"
+
 isexe@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.alibaba-inc.com/isexe/download/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
@@ -3996,7 +3993,7 @@ loader-utils@^0.2.15, loader-utils@^0.2.16, loader-utils@~0.2.2:
     json5 "^0.5.0"
     object-assign "^4.0.1"
 
-loader-utils@^1.0.0, loader-utils@^1.0.2, loader-utils@^1.1.0:
+loader-utils@^1.0.2, loader-utils@^1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.alibaba-inc.com/loader-utils/download/loader-utils-1.1.0.tgz#c98aef488bcceda2ffb5e2de646d6a754429f5cd"
   dependencies:
@@ -4733,10 +4730,6 @@ p-map@^1.1.1:
 pako@~0.2.0:
   version "0.2.9"
   resolved "http://registry.npm.alibaba-inc.com/pako/download/pako-0.2.9.tgz#f3f7522f4ef782348da8161bad9ecfd51bf83a75"
-
-papaparse@^4.2.0:
-  version "4.3.6"
-  resolved "http://registry.npm.alibaba-inc.com/papaparse/download/papaparse-4.3.6.tgz#9566eda0ecab13afcb740a62381c699f486cb145"
 
 param-case@2.1.x:
   version "2.1.1"
@@ -6309,6 +6302,10 @@ require-from-string@^1.1.0:
   version "1.2.1"
   resolved "http://registry.npm.alibaba-inc.com/require-from-string/download/require-from-string-1.2.1.tgz#529c9ccef27380adfec9a2f965b649bbee636418"
 
+require-from-string@^2.0.1:
+  version "2.0.1"
+  resolved "http://registry.npm.alibaba-inc.com/require-from-string/download/require-from-string-2.0.1.tgz#c545233e9d7da6616e9d59adfb39fc9f588676ff"
+
 require-main-filename@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.alibaba-inc.com/require-main-filename/download/require-main-filename-1.0.1.tgz#97f717b69d48784f5f526a6c5aa8ffdda055a4d1"
@@ -6409,6 +6406,10 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^2.0.0"
     inherits "^2.0.1"
 
+rollup@^0.50.0:
+  version "0.50.0"
+  resolved "http://registry.npm.alibaba-inc.com/rollup/download/rollup-0.50.0.tgz#4c158f4e780e6cb33ff0dbfc184a52cc58cd5f3b"
+
 run-async@^2.2.0:
   version "2.3.0"
   resolved "http://registry.npm.alibaba-inc.com/run-async/download/run-async-2.3.0.tgz#0371ab4ae0bdd720d4166d7dfda64ff7a445a6c0"
@@ -6447,7 +6448,7 @@ safe-json-parse@4.0.0:
   dependencies:
     rust-result "^1.0.0"
 
-sax@>=0.6.0, sax@~1.2.1:
+sax@~1.2.1:
   version "1.2.4"
   resolved "http://registry.npm.alibaba-inc.com/sax/download/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
@@ -7573,7 +7574,7 @@ wbuf@^1.1.0, wbuf@^1.7.2:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-webpack-dev-middleware@^1.11.0:
+webpack-dev-middleware@1.*, webpack-dev-middleware@^1.11.0:
   version "1.12.0"
   resolved "http://registry.npm.alibaba-inc.com/webpack-dev-middleware/download/webpack-dev-middleware-1.12.0.tgz#d34efefb2edda7e1d3b5dbe07289513219651709"
   dependencies:
@@ -7776,24 +7777,6 @@ xml-char-classes@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.alibaba-inc.com/xml-char-classes/download/xml-char-classes-1.0.0.tgz#64657848a20ffc5df583a42ad8a277b4512bbc4d"
 
-xml-loader@^1.2.1:
-  version "1.2.1"
-  resolved "http://registry.npm.alibaba-inc.com/xml-loader/download/xml-loader-1.2.1.tgz#03484da710c44d3610dd36c2af4094b35b4f7975"
-  dependencies:
-    loader-utils "^1.0.0"
-    xml2js "^0.4.16"
-
-xml2js@^0.4.16:
-  version "0.4.19"
-  resolved "http://registry.npm.alibaba-inc.com/xml2js/download/xml2js-0.4.19.tgz#686c20f213209e94abf0d1bcf1efaa291c7827a7"
-  dependencies:
-    sax ">=0.6.0"
-    xmlbuilder "~9.0.1"
-
-xmlbuilder@~9.0.1:
-  version "9.0.4"
-  resolved "http://registry.npm.alibaba-inc.com/xmlbuilder/download/xmlbuilder-9.0.4.tgz#519cb4ca686d005a8420d3496f3f0caeecca580f"
-
 xmlhttprequest@1.4.2:
   version "1.4.2"
   resolved "http://registry.npm.alibaba-inc.com/xmlhttprequest/download/xmlhttprequest-1.4.2.tgz#01453a1d9bed1e8f172f6495bbf4c8c426321500"
@@ -7894,23 +7877,23 @@ zeparser@0.0.5:
   resolved "http://registry.npm.alibaba-inc.com/zeparser/download/zeparser-0.0.5.tgz#03726561bc268f2e5444f54c665b7fd4a8c029e2"
 
 zoro-kit-vue@*:
-  version "0.1.59"
-  resolved "http://registry.npm.alibaba-inc.com/zoro-kit-vue/download/zoro-kit-vue-0.1.59.tgz#3f3b1feb87228c3ff3158488cc09f85ba7fdc49c"
+  version "0.1.62"
+  resolved "http://registry.npm.alibaba-inc.com/zoro-kit-vue/download/zoro-kit-vue-0.1.62.tgz#195c78af0da5d12c80d35c51d69c47f9f0fd760f"
   dependencies:
     babel-helper-vue-jsx-merge-props "2.*"
     babel-plugin-syntax-jsx "6.*"
     babel-plugin-transform-vue-jsx "3.*"
-    eslint-config-zoro-vue "^0.1.59"
+    eslint-config-zoro-vue "^0.1.62"
     vue "2.4.2"
     vue-loader "13.*"
     vue-router "2.*"
     vue-template-compiler "2.4.2"
     vuex "2.*"
-    zoro-kit "^0.1.59"
+    zoro-kit "^0.1.62"
 
-zoro-kit@^0.1.59:
-  version "0.1.59"
-  resolved "http://registry.npm.alibaba-inc.com/zoro-kit/download/zoro-kit-0.1.59.tgz#e90dee4df03bd944a287365419d09f26d097acf5"
+zoro-kit@^0.1.62:
+  version "0.1.62"
+  resolved "http://registry.npm.alibaba-inc.com/zoro-kit/download/zoro-kit-0.1.62.tgz#4f74e2d42dac64cea82808ab598c1406c9c47338"
   dependencies:
     autoprefixer "*"
     axios "*"
@@ -7932,7 +7915,7 @@ zoro-kit@^0.1.59:
     es5-shim "*"
     es6-promise "^4.1.0"
     es6-shim "*"
-    eslint-config-zoro-base "^0.1.59"
+    eslint-config-zoro-base "^0.1.62"
     extract-loader "0.*"
     extract-text-webpack-plugin "2.*"
     file-loader "0.*"
@@ -7965,6 +7948,7 @@ zoro-kit@^0.1.59:
     url-loader "0.*"
     watch "*"
     webpack "2.*"
+    webpack-dev-middleware "1.*"
     webpack-dev-server "2.*"
     webpack-merge "4.*"
     yaml-loader "0.*"

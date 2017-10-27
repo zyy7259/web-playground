@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+</head>
+
+<body>
+  <script src='dist.js'></script>
+  <script>
+    function findKeyOfValue(object, value, paths = []) {
+      if (isObjectOrArray(object)) {
+        Object.keys(object).some(k => {
+          const v = object[k];
+          // console.log('looking ' + paths.join('.') + '.' + k);
+          if (isObjectOrArray(v)) {
+            return findKeyOfValue(v, value, [...paths, k]);
+          }
+          if (v === value) {
+            console.log('got ' + paths.join('.'));
+            alert('got ' + paths.join('.'));
+            return true;
+          }
+          return false;
+        });
+      }
+    }
+
+    function isObjectOrArray(object) {
+      return Object.prototype.toString.call(object) === '[object Object]' || Array.isArray(object);
+    }
+
+    findKeyOfValue(json, 'Red');
+    console.log('done');
+  </script>
+</body>
+
+</html>

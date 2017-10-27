@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+<meta http-equiv='x-ua-compatible' content='ie=edge'>
+<title>Page Title</title>
+<style>
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .list {
+    position: relative;
+    height: 3000px;
+    background: linear-gradient(to bottom, teal, silver);
+  }
+  .stats {
+    position: fixed;
+    top: 100px;
+    left: 10px;
+    right: 0;
+    font-size: 20px;
+    color: white;
+  }
+</style>
+</head>
+<body>
+<div id='app' class='list'>
+</div>
+<span class='stats'>0</span>
+<script src='../node_modules/iscroll/build/iscroll.js'></script>
+<script>
+const container = document.body;
+const list = document.querySelector('.list');
+const scroll = new IScroll(container, {
+  mouseWheel: true
+});
+scroll.on('scrollEnd', refreshStats);
+function refreshStats() {
+  document.querySelector('.stats').innerHTML = `
+    list height: ${list.scrollHeight}<br>
+    container height: ${container.clientHeight}<br>
+    y: ${-scroll.y}
+  `;
+}
+refreshStats();
+</script>
+</body>
+</html>

@@ -1,14 +1,20 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
+const isDevelopment =
+  !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: {
-    app: './src/index.js'
+    index: './src/index.js',
+    vendor: ['lodash/now']
   },
   output: {
-    publicPath: '/',
-    filename: '[name].bundle.js',
+    publicPath: '/dist/',
+    filename: isDevelopment ? '[name].js' : '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
     pathinfo: true
   },
@@ -40,14 +46,30 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Output Management'
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
+    new webpack.HashedModuleIdsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime'
+    }),
+    ...(isProduction ? [new UglifyJSPlugin()] : []),
+    ...(isDevelopment
+      ? [
+          new webpack.HotModuleReplacementPlugin(),
+          new webpack.NamedModulesPlugin()
+        ]
+      : [])
   ],
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist',
-    hot: true,
-    overlay: true,
-    progress: true
-  }
+  devtool: isDevelopment ? 'inline-source-map' : undefined,
+  ...(isDevelopment
+    ? {
+        devServer: {
+          contentBase: '.',
+          hot: true,
+          host: '0.0.0.0',
+          overlay: true
+        }
+      }
+    : {})
 };
