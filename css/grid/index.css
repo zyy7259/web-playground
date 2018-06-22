@@ -1,0 +1,31 @@
+.container {
+  margin-top: 1rem;
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-rows: 50px 100px;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-auto-rows: 42px;
+  grid-auto-columns: 42px;
+  grid-gap: 1rem;
+  grid-row-gap: 2rem;
+  grid-column-gap: 3rem;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: Maroon;
+  font-size: 2rem;
+  background-color: silver;
+}
+
+.item:nth-child(4n+1) {
+  grid-column-end: span 2;
+}
+
+.item1 {
+  grid-row: 2/4;
+  grid-column: 2/4;
+  background-color: teal;
+}
